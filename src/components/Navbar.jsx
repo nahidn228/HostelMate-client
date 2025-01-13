@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import { FaHome, FaUser } from "react-icons/fa";
 import { AuthContext } from "../providers/AuthProvider";
 import HostelMateIcon from "./HostelMateIcon";
 const Navbar = () => {
@@ -11,9 +10,8 @@ const Navbar = () => {
     <div className="navbar max-w-screen-xl  shadow-sm  mx-auto fixed z-10 bg-white/40  backdrop-blur-xl">
       <div className="flex-1">
         <Link to="/" className="flex gap-2 items-center">
-        
           <HostelMateIcon />
-          <span className="font-bold">HostelMate</span>
+          <span className="font-bold text-black">HostelMate</span>
         </Link>
       </div>
       <div className="flex-none">

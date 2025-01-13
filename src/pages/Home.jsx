@@ -1,13 +1,13 @@
-import Carousel from '../components/Carousel'
-import TabCategories from '../components/TabCategories'
+import Carousel from "../components/Carousel";
+import LongCard from "../components/LongCard";
 
 const Home = () => {
   return (
     <div>
       <Carousel />
-      <TabCategories />
+      <LongCard />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
