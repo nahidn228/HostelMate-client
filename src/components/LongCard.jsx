@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 const LongCard = () => {
   return (
-    <div className="flex flex-col lg:flex-row gap-6 py-20">
+    <div className="container flex flex-col lg:flex-row items-center justify-center gap-6 py-20">
       {/* Photo */}
-      <div className="w-1/2 relative">
+      <div className=" px-5 lg:px-0 lg:w-1/2 relative">
         <img
           className="w-4/6 min-h-full shadow-xl object-cover"
           src={cardImg1}
@@ -19,7 +19,7 @@ const LongCard = () => {
         />
       </div>
       {/* content */}
-      <div className="w-1/2 space-y-4">
+      <div className="px-5 lg:px-0 lg:w-1/2 space-y-4">
         <div className="divider w-1/4 divider-success p-2"></div>
         <p className="text-sm font-medium uppercase">
           RAISING COMFORT TO THE HIGHEST LEVEL

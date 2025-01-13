@@ -31,6 +31,20 @@ const PhotoGallery = () => {
           grabCursor={true}
           centeredSlides={true}
           slidesPerView={4}
+          breakpoints={{
+            320: {
+              slidesPerView: 1, // 1 slide visible on small screens (mobile)
+            },
+            640: {
+              slidesPerView: 2, // 2 slides visible on medium screens (tablets)
+            },
+            1024: {
+              slidesPerView: 3, // 3 slides visible on larger screens
+            },
+            1280: {
+              slidesPerView: 4, // 4 slides visible on extra-large screens
+            },
+          }}
           coverflowEffect={{
             rotate: 50,
             stretch: 0,

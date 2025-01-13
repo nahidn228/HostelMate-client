@@ -4,9 +4,9 @@ import cardImg2 from "../assets/images/welcome-2-1024x705.jpg";
 
 const ParallaxCard = () => {
   return (
-    <div className="flex flex-col lg:flex-row gap-6 py-20">
+    <div className="flex flex-col lg:flex-row gap-6 px-6 py-20">
       {/* content */}
-      <div className="w-1/2 space-y-4 bg-[#1A506E]/80 text-white p-8 rounded-xl ">
+      <div className="  lg:w-1/2 space-y-4 bg-[#1A506E]/80 text-white p-8 rounded-xl ">
         <div className="divider w-1/4 divider-success p-2"></div>
         <p className="text-sm font-medium uppercase">
           RAISING COMFORT TO THE HIGHEST LEVEL
@@ -32,7 +32,7 @@ const ParallaxCard = () => {
         </div>
       </div>
       {/* Photo */}
-      <div className="w-1/2 relative">
+      <div className="lg:w-1/2 relative">
         <img
           className="w-4/6 min-h-full shadow-xl object-cover"
           src={cardImg1}
