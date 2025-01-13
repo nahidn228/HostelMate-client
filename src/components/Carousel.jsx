@@ -13,10 +13,11 @@ import Slide from './Slide'
 import bgimg1 from '../assets/images/carousel1.jpg'
 import bgimg2 from '../assets/images/carousel2.jpg'
 import bgimg3 from '../assets/images/carousel3.jpg'
+import bgimg4 from '../assets/images/carousel4.jpg'
 
 export default function Carousel() {
   return (
-    <div className='container px-6 py-10 mx-auto'>
+    <div className='container  mx-auto'>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -28,7 +29,7 @@ export default function Carousel() {
         pagination={{
           clickable: true,
         }}
-        navigation={true}
+       
         modules={[Autoplay, Pagination, Navigation]}
         className='mySwiper'
       >
@@ -47,6 +48,12 @@ export default function Carousel() {
         <SwiperSlide>
           <Slide
             image={bgimg3}
+            text='Start Your Digital Marketing Campaigns up n running'
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Slide
+            image={bgimg4}
             text='Start Your Digital Marketing Campaigns up n running'
           />
         </SwiperSlide>
