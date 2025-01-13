@@ -1,5 +1,5 @@
 import bgimg from "../assets/images/fullImg.jpg";
-import ParallaxCard from "./ParallaxCard";
+import ParallaxCard from "../components/ParallaxCard";
 const Parallax = () => {
   return (
     <section
