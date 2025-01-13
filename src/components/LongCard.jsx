@@ -12,7 +12,7 @@ const LongCard = () => {
           alt=""
         />
         <img
-          className="absolute bottom-0 h-1/2 right-12 w-3/5 shadow-xl"
+          className="absolute bottom-0 h-1/2 right-16 w-2/4 shadow-xl"
           src={cardImg2}
           alt=""
         />
@@ -23,7 +23,7 @@ const LongCard = () => {
         <p className="text-sm font-medium uppercase">
           RAISING COMFORT TO THE HIGHEST LEVEL
         </p>
-        <h4 className=" text-2xl lg:text-5xl font-semibold">
+        <h4 className=" text-2xl lg:text-4xl font-semibold">
           Welcome to HostelMate{" "}
         </h4>
         <div className="ml-4 lg:ml-12 text-base font-normal">
