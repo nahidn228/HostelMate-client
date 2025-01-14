@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import JobCard from "./JobCard";
 
 const TabCategories = () => {
   return (
@@ -26,31 +25,31 @@ const TabCategories = () => {
         </div>
         <TabPanel>
           <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {/* <JobCard />
             <JobCard />
             <JobCard />
-            <JobCard />
-            <JobCard />
+            <JobCard /> */}
           </div>
         </TabPanel>
 
         <TabPanel>
           <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            <JobCard />
-            <JobCard />
+            {/* <JobCard />
+            <JobCard /> */}
           </div>
         </TabPanel>
 
         <TabPanel>
           <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            <JobCard /> <JobCard />
-            <JobCard />
+            {/* <JobCard /> <JobCard />
+            <JobCard /> */}
           </div>
         </TabPanel>
         <TabPanel>
           <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {/* <JobCard /> <JobCard />
             <JobCard /> <JobCard />
-            <JobCard /> <JobCard />
-            <JobCard /> <JobCard />
+            <JobCard /> <JobCard /> */}
           </div>
         </TabPanel>
       </div>

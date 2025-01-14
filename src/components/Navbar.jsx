@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
 import { IoNotifications } from "react-icons/io5";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import HostelMateIcon from "./HostelMateIcon";
 const Navbar = () => {
@@ -20,16 +20,16 @@ const Navbar = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/jobs">Meals</Link>
+            <Link to="/meals">Meals</Link>
           </li>
           <li>
-            <Link to="/jobs">Upcoming Meals</Link>
+            <Link to="/meals">Upcoming Meals</Link>
           </li>
           {/* notification */}
           <li>
             <Link className=" ">
               <div className="indicator">
-               <IoNotifications className='text-xl' />
+                <IoNotifications className="text-xl" />
                 <span className="badge badge-xs badge-primary indicator-item"></span>
               </div>
             </Link>
@@ -66,7 +66,7 @@ const Navbar = () => {
                   Dashboard
                 </Link>
               </li>
-              
+
               <li className="mt-2">
                 <button
                   onClick={logOut}
