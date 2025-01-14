@@ -37,7 +37,7 @@ const MealsCard = ({ meal }) => {
 
           {/* Movie Details */}
           <div className="p-4 flex flex-col space-y-4 ">
-            <h2 className="text-2xl font-semibold text-black truncate group-hover:text-blue-500">
+            <h2 className="text-2xl font-light text-black truncate group-hover:text-blue-500">
               {title}
             </h2>
             <div className="flex justify-between items-center text-sm text-black">

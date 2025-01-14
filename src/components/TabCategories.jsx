@@ -1,8 +1,15 @@
 /* eslint-disable react/prop-types */
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import useMeals from "./../hooks/useMeals";
+import MealsCard from "./MealsCard";
 
 const TabCategories = () => {
+  const [meals] = useMeals();
+  const breakfast = meals.filter((item) => item.category === "breakfast");
+  const lunch = meals.filter((item) => item.category === "lunch");
+  const dinner = meals.filter((item) => item.category === "dinner");
+
   return (
     <Tabs>
       <div className=" container px-6 py-10 mx-auto">
@@ -15,7 +22,7 @@ const TabCategories = () => {
           Development, Graphics Design and Digital Marketing. Browse them by
           clicking on the tabs below.
         </p>
-        <div className="flex items-center justify-center text-xl font-medium">
+        <div className="flex items-center justify-center text-xl md:text-2xl font-light mt-10">
           <TabList>
             <Tab>Breakfast</Tab>
             <Tab>Lunch</Tab>
@@ -25,31 +32,32 @@ const TabCategories = () => {
         </div>
         <TabPanel>
           <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {/* <JobCard />
-            <JobCard />
-            <JobCard />
-            <JobCard /> */}
+            {breakfast.slice(0, 4).map((meal) => (
+              <MealsCard key={meal._id} meal={meal}></MealsCard>
+            ))}
           </div>
         </TabPanel>
 
         <TabPanel>
           <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {/* <JobCard />
-            <JobCard /> */}
+            {lunch.slice(0, 4).map((meal) => (
+              <MealsCard key={meal._id} meal={meal}></MealsCard>
+            ))}
           </div>
         </TabPanel>
 
         <TabPanel>
           <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {/* <JobCard /> <JobCard />
-            <JobCard /> */}
+            {dinner.slice(0, 4).map((meal) => (
+              <MealsCard key={meal._id} meal={meal}></MealsCard>
+            ))}
           </div>
         </TabPanel>
         <TabPanel>
           <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {/* <JobCard /> <JobCard />
-            <JobCard /> <JobCard />
-            <JobCard /> <JobCard /> */}
+            {meals.slice(0, 4).map((meal) => (
+              <MealsCard key={meal._id} meal={meal}></MealsCard>
+            ))}
           </div>
         </TabPanel>
       </div>
