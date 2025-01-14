@@ -1,35 +1,35 @@
 /* eslint-disable no-unused-vars */
-import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { toast } from "react-hot-toast";
 import MealsCard from "../components/MealsCard";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const AllMeals = () => {
   // const [meals] = useMeals();
-  // const axiosPublic = useAxiosPublic();
+  const axiosPublic = useAxiosPublic();
   const [jobs, setJobs] = useState([]);
   const [filter, setFilter] = useState("");
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [getMeals, setGetMeals] = useState([]);
-  // console.log(meals);
+
   const [hasMore, setHasMore] = useState(true);
+
+  const { data: meals = [], refetch } = useQuery({
+    queryKey: ["meals"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(
+        `/meals?filter=${filter}&search=${search}&sort=${sort}`
+      );
+      return res.data;
+    },
+  });
+
+  console.log(meals);
+
   useEffect(() => {
-    try {
-      const fetchAllData = async () => {
-        const { data } = await axios.get(
-          `http://localhost:5000/meals?filter=${filter}&search=${search}&sort=${sort}`
-        );
-        setGetMeals(data);
-      };
-      fetchAllData();
-    } catch (err) {
-      toast.error(err);
-    } finally {
-      setTimeout(() => setIsLoading(false), 2000);
-    }
-  }, [filter, search, sort]);
+    refetch();
+  }, [filter, refetch, search, sort]);
   const handleReset = () => {
     setFilter("");
     setSearch("");
@@ -65,7 +65,10 @@ const AllMeals = () => {
                   onChange={(e) => setSearch(e.target.value)}
                 />
 
-                <button className="px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none">
+                <button
+                  type="button"
+                  className="px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none"
+                >
                   Search
                 </button>
               </div>
@@ -89,7 +92,7 @@ const AllMeals = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {getMeals.map((meal) => (
+          {meals?.map((meal) => (
             <MealsCard key={meal._id} meal={meal} />
           ))}
           {/* {getMeals.map((meal) => (

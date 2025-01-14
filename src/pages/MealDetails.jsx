@@ -87,11 +87,7 @@ const MealDetails = () => {
           </ul>
           <p className="mt-4 text-lg font-bold text-gray-600 flex gap-2">
             Rating:
-            <Rating
-              style={{ maxWidth: 80 }}
-              value={meal?.rating}
-              readOnly
-            />
+            <Rating style={{ maxWidth: 80 }} value={meal?.rating} readOnly />
             {meal?.rating}
           </p>
         </div>
