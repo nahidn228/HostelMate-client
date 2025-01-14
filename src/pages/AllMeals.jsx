@@ -30,6 +30,11 @@ const AllMeals = () => {
       setTimeout(() => setIsLoading(false), 2000);
     }
   }, [filter, search, sort]);
+  const handleReset = () => {
+    setFilter("");
+    setSearch("");
+    setSort("");
+  };
 
   return (
     <div className="container lg:px-6 py-10 mx-auto min-h-screen flex flex-col justify-between">
@@ -78,7 +83,9 @@ const AllMeals = () => {
               <option value="dsc">Descending Order</option>
               <option value="asc">Ascending Order</option>
             </select>
-            <button className="btn">Reset</button>
+            <button onClick={handleReset} className="btn">
+              Reset
+            </button>
           </div>
         </div>
         <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

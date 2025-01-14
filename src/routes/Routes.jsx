@@ -7,7 +7,7 @@ import Register from "../pages/Authentication/Register";
 import BidRequests from "../pages/BidRequests";
 import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
-import JobDetails from "../pages/JobDetails";
+import MealDetails from "../pages/MealDetails";
 import MyBids from "../pages/MyBids";
 import MyPostedJobs from "../pages/MyPostedJobs";
 import UpdateJob from "../pages/UpdateJob";
@@ -37,11 +37,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/meal/:id",
-        element: (
-          <PrivateRoute>
-            <JobDetails />
-          </PrivateRoute>
-        ),
+        element: <MealDetails />,
       },
       {
         path: "/update/:id",
