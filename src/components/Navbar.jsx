@@ -7,7 +7,7 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
   return (
-    <div className="navbar max-w-screen-xl  shadow-sm  mx-auto fixed z-10 bg-white/60  backdrop-blur-xl font-semibold">
+    <div className="navbar   shadow-sm  mx-auto  bg-white   font-semibold">
       <div className="flex-1">
         <Link to="/" className="flex gap-2 items-center">
           <HostelMateIcon />

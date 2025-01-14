@@ -40,7 +40,7 @@ const LongCard = () => {
             for the use of guests, from where you can enjoy the view.
           </p>
           
-          <Link className="btn btn-outline border-0 border-b-2 uppercase text-white hover:bg-green-600 mt-4">
+          <Link className="btn btn-outline border-0 border-b-2 uppercase  hover:bg-green-600 mt-4">
               Read More
             </Link>
         </div>
