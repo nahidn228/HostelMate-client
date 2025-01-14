@@ -1,11 +1,20 @@
 /* eslint-disable no-unused-vars */
-
+import { useState } from "react";
+import InfiniteScroll from "react-infinite-scroller";
 import MealsCard from "../components/MealsCard";
 import useMeals from "../hooks/useMeals";
 
 const AllMeals = () => {
   const [meals] = useMeals();
-  console.log(meals);
+  const [getMeals, setGetMeals] = useState(meals);
+  // console.log(meals);
+  const [hasMore, setHasMore] = useState(true);
+  const fetchMoreData = () => {
+    setTimeout(() => {
+      setGetMeals(getMeals.concat(Array.from({ length: meals.length })));
+    }, 500);
+  };
+
   return (
     <div className="container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between">
       <div>
@@ -16,7 +25,6 @@ const AllMeals = () => {
               id="category"
               className="border p-4 rounded-lg"
             >
-             
               <option value="">Filter By Category</option>
               <option value="Web Development">Breakfast</option>
               <option value="Graphics Design">Lunch</option>
@@ -53,9 +61,18 @@ const AllMeals = () => {
           <button className="btn">Reset</button>
         </div>
         <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {
-            meals.map(meal => <MealsCard key={meal._id} meal={meal} />)
-          }
+          {meals.map((meal) => (
+            <InfiniteScroll
+              key={meal._id}
+              dataLength={getMeals.length}
+              pageStart={0}
+              loadMore={meal}
+              next={fetchMoreData}
+              hasMore={hasMore}
+            >
+              <MealsCard meal={meal} />
+            </InfiniteScroll>
+          ))}
         </div>
       </div>
     </div>
