@@ -33,16 +33,16 @@ const PhotoGallery = () => {
           slidesPerView={4}
           breakpoints={{
             320: {
-              slidesPerView: 1, // 1 slide visible on small screens (mobile)
+              slidesPerView: 1, 
             },
             640: {
-              slidesPerView: 2, // 2 slides visible on medium screens (tablets)
+              slidesPerView: 2, 
             },
             1024: {
-              slidesPerView: 3, // 3 slides visible on larger screens
+              slidesPerView: 3, 
             },
             1280: {
-              slidesPerView: 4, // 4 slides visible on extra-large screens
+              slidesPerView: 4, 
             },
           }}
           coverflowEffect={{

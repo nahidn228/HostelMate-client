@@ -1,17 +1,17 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-
+import { IoNotifications } from "react-icons/io5";
 import { AuthContext } from "../providers/AuthProvider";
 import HostelMateIcon from "./HostelMateIcon";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
   return (
-    <div className="navbar max-w-screen-xl  shadow-sm  mx-auto fixed z-10 bg-white/40  backdrop-blur-xl">
+    <div className="navbar max-w-screen-xl  shadow-sm  mx-auto fixed z-10 bg-white/60  backdrop-blur-xl font-semibold">
       <div className="flex-1">
         <Link to="/" className="flex gap-2 items-center">
           <HostelMateIcon />
-          <span className="font-bold text-black">HostelMate</span>
+          <span className="font-bold text-black text-xl">HostelMate</span>
         </Link>
       </div>
       <div className="flex-none">
@@ -20,12 +20,24 @@ const Navbar = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/jobs">All Jobs</Link>
+            <Link to="/jobs">Meals</Link>
+          </li>
+          <li>
+            <Link to="/jobs">Upcoming Meals</Link>
+          </li>
+          {/* notification */}
+          <li>
+            <Link className=" ">
+              <div className="indicator">
+               <IoNotifications className='text-xl' />
+                <span className="badge badge-xs badge-primary indicator-item"></span>
+              </div>
+            </Link>
           </li>
 
           {!user && (
             <li>
-              <Link to="/login">Login</Link>
+              <Link to="/login">Join Us</Link>
             </li>
           )}
         </ul>
@@ -50,19 +62,11 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link to="/add-job" className="justify-between">
-                  Add Job
+                <Link to="/dashboard" className="justify-between">
+                  Dashboard
                 </Link>
               </li>
-              <li>
-                <Link to="/my-posted-jobs">My Posted Jobs</Link>
-              </li>
-              <li>
-                <Link to="/my-bids">My Bids</Link>
-              </li>
-              <li>
-                <Link to="/bid-requests">Bid Requests</Link>
-              </li>
+              
               <li className="mt-2">
                 <button
                   onClick={logOut}

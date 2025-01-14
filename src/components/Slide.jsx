@@ -9,7 +9,7 @@ const Slide = ({ image, title, subtitle }) => {
         backgroundImage: `url(${image})`,
       }}
     >
-      <div className='flex items-center justify-center lg:justify-items-start  w-full h-full bg-gray-900/70'>
+      <div className='flex items-center justify-center lg:justify-start  w-full h-full bg-gray-900/70'>
         <div className='container   lg:w-1/2 px-3 md:pl-28 space-y-5'>
           <h1 className='text-3xl font-normal text-white lg:text-7xl'>
             {title}

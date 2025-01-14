@@ -39,7 +39,7 @@ const ParallaxCard = () => {
           alt=""
         />
         <img
-          className="absolute bottom-0 h-1/2 right-16 w-2/4 shadow-xl"
+          className="absolute bottom-0 h-1/2 right-4 w-3/5 shadow-xl"
           src={cardImg2}
           alt=""
         />
