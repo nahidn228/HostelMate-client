@@ -1,23 +1,26 @@
 import { Rating } from "@smastrom/react-rating";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
 import useAxiosPublic from "./../hooks/useAxiosPublic";
 
 const MealDetails = () => {
+  const { user } = useContext(AuthContext);
+
   const { id } = useParams();
   const axiosPublic = useAxiosPublic();
   const [likes, setLikes] = useState(0);
-  const [reviews, setReviews] = useState([]);
-  const [reviewText, setReviewText] = useState("");
   const [startDate, setStartDate] = useState(new Date());
 
   const {
     data: meal = {},
     isLoading,
     isError,
+    refetch,
   } = useQuery({
     queryKey: ["meals", id],
     queryFn: async () => {
@@ -25,23 +28,36 @@ const MealDetails = () => {
       return res.data;
     },
   });
+  console.log(meal);
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Something went wrong!</div>;
 
   const handleLike = () => setLikes(likes + 1);
 
-  const handleReviewSubmit = (e) => {
+  const handleReviewSubmit = async (e) => {
     e.preventDefault();
-    if (!reviewText.trim()) return;
+    const reviewText = e.target.review.value;
 
     const newReview = {
-      id: reviews.length + 1,
-      text: reviewText,
-      user: "Logged-in User", // Replace with actual user data
+      reviewerName: user?.displayName || "Anonymous",
+      reviewText,
     };
-    setReviews([...reviews, newReview]);
-    setReviewText("");
+
+    try {
+      // Send the new review to the server
+      const { data } = await axiosPublic.post(`/meals/${id}`, newReview);
+
+      console.log("Review added:", data);
+      if (data?.modifiedCount > 0) {
+        refetch();
+        e.target.reset();
+        toast.success("Review added Successful");
+      }
+    } catch (err) {
+      console.error("Failed to add review:", err);
+      toast.error(err);
+    }
   };
 
   return (
@@ -86,9 +102,8 @@ const MealDetails = () => {
         <button
           className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
           onClick={handleLike}
-          aria-label={`Like this meal. Current likes: ${likes}`}
         >
-          Like ({likes})
+          Like ({meal?.like})
         </button>
         {/* Meal Request Button */}
         <button
@@ -112,22 +127,29 @@ const MealDetails = () => {
             >
               <p>
                 <span className="font-semibold flex gap-2">
-                  {review?.reviewerName}{" "}
-                  <Rating
-                    className="max-w-[80px]"
-                    value={review?.rating}
-                    readOnly
-                  />{" "}
+                  {review?.reviewerName}
+                  {review.rating ? (
+                    <Rating
+                      className="max-w-[80px]"
+                      value={review?.rating}
+                      readOnly
+                    />
+                  ) : (
+                    ""
+                  )}
                 </span>{" "}
                 <br />
                 {review?.reviewText}
               </p>
             </li>
           ))}
-          {reviews.length === 0 && (
-            <p className="text-gray-500">
-              No reviews yet. Be the first to review!
-            </p>
+          {meal?.reviews.map(
+            (review, idx) =>
+              review.length === 0 && (
+                <p key={idx} className="text-gray-500">
+                  No reviews yet. Be the first to review!
+                </p>
+              )
           )}
         </ul>
         <form onSubmit={handleReviewSubmit} className="mt-6">
@@ -138,8 +160,6 @@ const MealDetails = () => {
             id="review"
             name="review"
             rows="4"
-            value={reviewText}
-            onChange={(e) => setReviewText(e.target.value)}
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md"
             placeholder="Write your review here..."
             required
