@@ -13,8 +13,9 @@ const MealDetails = () => {
 
   const { id } = useParams();
   const axiosPublic = useAxiosPublic();
-  const [likes, setLikes] = useState(0);
+
   const [startDate, setStartDate] = useState(new Date());
+  const [isLiked, setIsLiked] = useState(false);
 
   const {
     data: meal = {},
@@ -33,7 +34,25 @@ const MealDetails = () => {
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Something went wrong!</div>;
 
-  const handleLike = () => setLikes(likes + 1);
+  const handleLike = async () => {
+    const likes = parseInt(meal?.likes + 1);
+    if (user) {
+      try {
+        const { data } = await axiosPublic.patch(`/meals/${id}`, likes);
+        console.log("Like added:", data);
+        if (data?.modifiedCount > 0) {
+          refetch();
+          setIsLiked(true);
+          toast.success(`Thank you ${user?.displayName} for like our Food`);
+        }
+      } catch (err) {
+        console.error("Failed to add like:", err);
+        toast.error(err);
+      }
+    } else {
+      toast.error("Please Login first to like our food");
+    }
+  };
 
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
@@ -100,10 +119,13 @@ const MealDetails = () => {
           {meal?.rating || "No rating"}
         </p>
         <button
-          className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          disabled={`${isLiked ? "disabled" : ""}`}
+          className={`  mt-4 px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 ${
+            isLiked ? "btn-disabled bg-gray-400 cursor-not-allowed" : ""
+          }`}
           onClick={handleLike}
         >
-          Like ({meal?.like})
+          Like ({meal?.likes})
         </button>
         {/* Meal Request Button */}
         <button

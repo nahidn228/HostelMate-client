@@ -7,7 +7,6 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 const AllMeals = () => {
   // const [meals] = useMeals();
   const axiosPublic = useAxiosPublic();
-  const [jobs, setJobs] = useState([]);
   const [filter, setFilter] = useState("");
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("");
@@ -95,18 +94,6 @@ const AllMeals = () => {
           {meals?.map((meal) => (
             <MealsCard key={meal._id} meal={meal} />
           ))}
-          {/* {getMeals.map((meal) => (
-            <InfiniteScroll
-              key={meal._id}
-              dataLength={getMeals.length}
-              pageStart={0}
-              loadMore={meal}
-              next={fetchAllData}
-              hasMore={hasMore}
-            >
-              <MealsCard meal={meal} />
-            </InfiniteScroll>
-          ))} */}
         </div>
       </div>
     </div>

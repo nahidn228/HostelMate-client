@@ -10,6 +10,7 @@ import Home from "../pages/Home";
 import MealDetails from "../pages/MealDetails";
 import MyBids from "../pages/MyBids";
 import MyPostedJobs from "../pages/MyPostedJobs";
+import UpcomingMeals from "../pages/UpcomingMeals";
 import UpdateJob from "../pages/UpdateJob";
 import PrivateRoute from "./PrivateRoute";
 
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/meals",
         element: <AllMeals />,
+      },
+      {
+        path: "/upcomingMeals",
+        element: <UpcomingMeals />,
       },
       {
         path: "/login",

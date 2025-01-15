@@ -43,7 +43,7 @@ const Navbar = () => {
                 <Link to="/meals">Meals</Link>
               </li>
               <li>
-                <Link to="/meals">Upcoming Meals</Link>
+                <Link to="/upcomingMeals">Upcoming Meals</Link>
               </li>
             </div>
           </ul>
@@ -65,7 +65,7 @@ const Navbar = () => {
               <Link to="/meals">Meals</Link>
             </li>
             <li>
-              <Link to="/meals">Upcoming Meals</Link>
+              <Link to="/upcomingMeals">Upcoming Meals</Link>
             </li>
             {/* notification */}
             <li>
