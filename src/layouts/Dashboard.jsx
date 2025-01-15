@@ -1,21 +1,25 @@
-import { FaBook, FaHome, FaList, FaUsers } from "react-icons/fa";
-import { FaCartPlus, FaListUl } from "react-icons/fa6";
+import { FaHome, FaList, FaUsers } from "react-icons/fa";
+import { FaCartPlus } from "react-icons/fa6";
+import { MdFastfood } from "react-icons/md";
+import { MdUpcoming } from "react-icons/md";
 import {
   MdEmail,
   MdOutlineRestaurantMenu,
   MdRateReview,
   MdRestaurant,
 } from "react-icons/md";
+import { GiHotMeal } from "react-icons/gi";
 import { RiHome7Fill } from "react-icons/ri";
 import { SlCalender } from "react-icons/sl";
 import { NavLink, Outlet } from "react-router-dom";
-import useAdmin from "../hooks/useAdmin";
+// import useAdmin from "../hooks/useAdmin";
 // import useCart from "../hooks/useCart";
 const Dashboard = () => {
   //   const [cart] = useCart();
 
   // TODO: get isAdmin value from the database
-    const [isAdmin] = useAdmin();
+  // const [isAdmin] = useAdmin();
+  const isAdmin = true;
 
   return (
     <div className="flex">
@@ -26,27 +30,37 @@ const Dashboard = () => {
               <li>
                 <NavLink to="/dashboard/adminHome">
                   <RiHome7Fill />
-                  Admin Home
+                  My Profile (Admin)
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/manage-users">
+                  <FaUsers /> Manage Users
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/add-item">
-                  <MdRestaurant /> Add Item
+                  <MdRestaurant /> Add Meal
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/manage-item">
-                  <FaListUl /> Manage Item
+                <NavLink to="/dashboard/allMeals">
+                  <GiHotMeal /> All Meals
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/manage-bookings">
-                  <FaBook /> Manage Bookings
+                <NavLink to="/dashboard/allReviews">
+                  <MdRateReview /> All Reviews
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/all-users">
-                  <FaUsers /> All Users
+                <NavLink to="/dashboard/serveMeals">
+                  <MdFastfood /> Serve Meals
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/upcomingMeals">
+                  <MdUpcoming /> Upcoming Meals
                 </NavLink>
               </li>
             </>
@@ -55,17 +69,22 @@ const Dashboard = () => {
               <li>
                 <NavLink to="/dashboard/userHome">
                   <RiHome7Fill />
-                  User Home
+                  My Profile (user)
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/reservation">
-                  <SlCalender /> Reservation
+                <NavLink to="/dashboard/mealRequest">
+                  <SlCalender /> Requested Meals
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/myReviews">
+                  <MdRateReview /> My Reviews
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/cart">
-                  <FaCartPlus /> My Cart ({cart.length})
+                  <FaCartPlus /> Cart
                 </NavLink>
               </li>
               <li>
@@ -73,18 +92,9 @@ const Dashboard = () => {
                   <FaList /> Payment History
                 </NavLink>
               </li>
-              <li>
-                <NavLink to="/dashboard/review">
-                  <MdRateReview /> Add Review
-                </NavLink>
-              </li>
-              {/* <li>
-                <NavLink to="/dashboard/bookings">
-                  <FaCalendarCheck /> My Bookings
-                </NavLink>
-              </li> */}
             </>
           )}
+
           {/* Shared NavLinks */}
           <div className="divider"></div>
           <li>
@@ -93,7 +103,7 @@ const Dashboard = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/order/salad">
+            <NavLink to="/meals">
               <MdOutlineRestaurantMenu /> Menu
             </NavLink>
           </li>

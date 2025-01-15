@@ -1,18 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
+import Dashboard from "../layouts/Dashboard";
 import Main from "../layouts/Main";
-import AddJob from "../pages/AddJob";
 import AllMeals from "../pages/AllMeals";
 import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
-import BidRequests from "../pages/BidRequests";
 import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
 import MealDetails from "../pages/MealDetails";
-import MyBids from "../pages/MyBids";
-import MyPostedJobs from "../pages/MyPostedJobs";
 import UpcomingMeals from "../pages/UpcomingMeals";
-import UpdateJob from "../pages/UpdateJob";
-import PrivateRoute from "./PrivateRoute";
+import ManageUsers from "../pages/dashboard/ManageUsers";
 
 const router = createBrowserRouter([
   {
@@ -44,45 +40,18 @@ const router = createBrowserRouter([
         path: "/meal/:id",
         element: <MealDetails />,
       },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+
+      //Admin Route
+      
       {
-        path: "/update/:id",
-        element: (
-          <PrivateRoute>
-            <UpdateJob />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/add-meal",
-        element: (
-          <PrivateRoute>
-            <AddJob />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/my-bids",
-        element: (
-          <PrivateRoute>
-            <MyBids />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/my-posted-jobs",
-        element: (
-          <PrivateRoute>
-            <MyPostedJobs />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/bid-requests",
-        element: (
-          <PrivateRoute>
-            <BidRequests />
-          </PrivateRoute>
-        ),
+        path: "manage-users",
+        element: <ManageUsers />,
       },
     ],
   },
