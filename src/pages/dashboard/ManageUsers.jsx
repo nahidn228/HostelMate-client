@@ -1,16 +1,44 @@
+/* eslint-disable no-unused-vars */
 import { useQuery } from "@tanstack/react-query";
+import { FaUserAlt } from "react-icons/fa";
+import { IoTrashBin } from "react-icons/io5";
+import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-
 const ManageUsers = () => {
   const axiosPublic = useAxiosPublic();
-  const { data: users = [] } = useQuery({
+  const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosPublic.get("/users");
       return res.data;
     },
   });
-  console.log(users);
+  const handleDeleteUser = (user) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPublic.delete(`/users/${user?._id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
+  const handleAdminUser = (user) => {};
+
   return (
     <div>
       <h2 className="text-2xl">All Users {users.length} </h2>
@@ -46,9 +74,22 @@ const ManageUsers = () => {
                 </td>
                 <td>{user?.email}</td>
                 <td>{user?.badge}</td>
-                <td className="">Role</td>
+                <td className="text-xl">
+                  {" "}
+                  <button
+                    onClick={() => handleAdminUser(user)}
+                    className="btn btn-ghost text-lg "
+                  >
+                    <FaUserAlt />
+                  </button>{" "}
+                </td>
                 <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
+                  <button
+                    onClick={() => handleDeleteUser(user)}
+                    className="btn btn-ghost text-lg text-orange-700"
+                  >
+                    <IoTrashBin />
+                  </button>
                 </th>
               </tr>
             ))}
