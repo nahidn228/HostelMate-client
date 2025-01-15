@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-hot-toast";
 import { FaUserAlt } from "react-icons/fa";
 import { IoTrashBin } from "react-icons/io5";
 import Swal from "sweetalert2";
@@ -9,7 +10,11 @@ const ManageUsers = () => {
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await axiosPublic.get("/users");
+      const res = await axiosPublic.get("/users", {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("access-token")}`,
+        },
+      });
       return res.data;
     },
   });
@@ -37,7 +42,35 @@ const ManageUsers = () => {
       }
     });
   };
-  const handleAdminUser = (user) => {};
+  const handleMakeAdmin = async (user) => {
+    try {
+      Swal.fire({
+        title: "Are you sure?",
+        text: `Do you want to make Admin to ${user.name} !`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Make Admin",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axiosPublic.patch(`/users/admin/${user?._id}`).then((res) => {
+            console.log(res.data);
+            if (res.data.modifiedCount > 0) {
+              refetch();
+              Swal.fire({
+                title: "Admin!",
+                text: `${user.name} is an Admin Now`,
+                icon: "success",
+              });
+            }
+          });
+        }
+      });
+    } catch (err) {
+      toast.error(err);
+    }
+  };
 
   return (
     <div>
@@ -75,13 +108,16 @@ const ManageUsers = () => {
                 <td>{user?.email}</td>
                 <td>{user?.badge}</td>
                 <td className="text-xl">
-                  {" "}
-                  <button
-                    onClick={() => handleAdminUser(user)}
-                    className="btn btn-ghost text-lg "
-                  >
-                    <FaUserAlt />
-                  </button>{" "}
+                  {user.role === "admin" ? (
+                    <p className="font-semibold text-base">Admin</p>
+                  ) : (
+                    <button
+                      onClick={() => handleMakeAdmin(user)}
+                      className="btn btn-ghost text-lg "
+                    >
+                      <FaUserAlt />
+                    </button>
+                  )}
                 </td>
                 <th>
                   <button
