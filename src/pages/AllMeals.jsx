@@ -29,7 +29,7 @@ const AllMeals = () => {
 
   useEffect(() => {
     refetch();
-  }, [filter, refetch, search, sort]);
+  }, [meals, filter, refetch, search, sort]);
   const handleReset = () => {
     setFilter("");
     setSearch("");
@@ -49,9 +49,9 @@ const AllMeals = () => {
               onChange={(e) => setFilter(e.target.value)}
             >
               <option value="">Filter By Category</option>
-              <option value="Breakfast">Breakfast</option>
-              <option value="Lunch">Lunch</option>
-              <option value="Dinner"> Dinner</option>
+              <option value="breakfast">Breakfast</option>
+              <option value="lunch">Lunch</option>
+              <option value="dinner"> Dinner</option>
             </select>
             <form>
               <div className="flex p-1 overflow-hidden border rounded-lg    focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300">
