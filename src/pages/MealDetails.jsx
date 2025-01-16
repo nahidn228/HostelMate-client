@@ -31,7 +31,7 @@ const MealDetails = () => {
       return res.data;
     },
   });
-  console.log(meal);
+  // console.log(meal);
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Something went wrong!</div>;
@@ -59,14 +59,18 @@ const MealDetails = () => {
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
     const reviewText = e.target.review.value;
+    if (reviewText.length < 20) {
+      return toast.error("Please write minimum 20 characters");
+    }
     const newReview = {
       reviewerName: user?.displayName || "Anonymous",
+      reviewerEmail: user?.email,
       reviewText,
     };
 
     try {
-      // Send the new review to the server
-      const { data } = await axiosPublic.post(`/meals/${id}`, newReview);
+      // Send the new review to the DB
+      const { data } = await axiosSecure.post(`/meals/${id}`, newReview);
 
       console.log("Review added:", data);
       if (data?.modifiedCount > 0) {
@@ -77,6 +81,23 @@ const MealDetails = () => {
     } catch (err) {
       console.error("Failed to add review:", err);
       toast.error(err);
+    }
+
+    const reviewData = {
+      reviewerName: user?.displayName || "Anonymous",
+      reviewerEmail: user?.email,
+      reviewText,
+      reviewMealTitle: meal?.title,
+      reviewMealLikes: meal?.likes,
+    };
+    try {
+      // Send the new review to the DB in reviewCollection
+      const { data } = axiosSecure.post("/reviews", reviewData);
+
+      console.log("Review added to ReviewCollection:", data);
+    } catch (err) {
+      console.error("Failed to add review:", err);
+      // toast.error(err);
     }
   };
 
