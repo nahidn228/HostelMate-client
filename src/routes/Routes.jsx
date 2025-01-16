@@ -9,6 +9,9 @@ import Home from "../pages/Home";
 import MealDetails from "../pages/MealDetails";
 import UpcomingMeals from "../pages/UpcomingMeals";
 import ManageUsers from "../pages/dashboard/Admin/ManageUsers";
+import MyReviews from "../pages/dashboard/Users/MyReviews";
+import PaymentHistory from "../pages/dashboard/Users/PaymentHistory";
+import RequestedMeal from "../pages/dashboard/Users/RequestedMeal";
 import UserHome from "../pages/dashboard/Users/UserHome";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
@@ -70,6 +73,18 @@ const router = createBrowserRouter([
       {
         path: "userHome",
         element: <UserHome />,
+      },
+      {
+        path: "mealRequest",
+        element: <RequestedMeal />,
+      },
+      {
+        path: "myReviews",
+        element: <MyReviews />,
+      },
+      {
+        path: "paymentHistory",
+        element: <PaymentHistory />,
       },
     ],
   },

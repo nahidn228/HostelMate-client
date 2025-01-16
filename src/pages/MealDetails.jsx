@@ -7,12 +7,14 @@ import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import useAxiosPublic from "./../hooks/useAxiosPublic";
+import useAxiosSecure from "./../hooks/useAxiosSecure";
 
 const MealDetails = () => {
   const { user } = useContext(AuthContext);
 
   const { id } = useParams();
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   const [startDate, setStartDate] = useState(new Date());
   const [isLiked, setIsLiked] = useState(false);
@@ -38,7 +40,7 @@ const MealDetails = () => {
     const likes = parseInt(meal?.likes + 1);
     if (user) {
       try {
-        const { data } = await axiosPublic.patch(`/meals/${id}`, likes);
+        const { data } = await axiosSecure.patch(`/meals/${id}`, likes);
         console.log("Like added:", data);
         if (data?.modifiedCount > 0) {
           refetch();
@@ -57,7 +59,6 @@ const MealDetails = () => {
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
     const reviewText = e.target.review.value;
-
     const newReview = {
       reviewerName: user?.displayName || "Anonymous",
       reviewText,
@@ -75,6 +76,31 @@ const MealDetails = () => {
       }
     } catch (err) {
       console.error("Failed to add review:", err);
+      toast.error(err);
+    }
+  };
+
+  const handleMealRequest = async () => {
+    try {
+      const mealRequest = {
+        meal_id: meal?._id,
+        title: meal.title,
+        category: meal.category,
+        likes: meal?.likes,
+        reviews: meal?.reviews,
+        status: "pending",
+        email: user?.email,
+      };
+      const { data } = await axiosSecure.post(
+        `/requestMeal/${id}`,
+        mealRequest
+      );
+      console.log("Meal request Successful :", data);
+      if (data?.acknowledged === true) {
+        toast.success(`${meal?.title} is Successfully request for order`);
+      }
+    } catch (err) {
+      console.error("Failed to add Food request:", err);
       toast.error(err);
     }
   };
@@ -130,9 +156,7 @@ const MealDetails = () => {
         {/* Meal Request Button */}
         <button
           className="mt-4 ml-4 px-6 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
-          onClick={() =>
-            alert("Meal request functionality pending login & subscription")
-          }
+          onClick={handleMealRequest}
         >
           Request Meal
         </button>

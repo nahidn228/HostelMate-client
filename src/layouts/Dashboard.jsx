@@ -10,7 +10,6 @@ import {
   MdUpcoming,
 } from "react-icons/md";
 import { RiHome7Fill } from "react-icons/ri";
-import { SlCalender } from "react-icons/sl";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 
@@ -70,7 +69,7 @@ const Dashboard = () => {
               </li>
               <li>
                 <NavLink to="/dashboard/mealRequest">
-                  <SlCalender /> Requested Meals
+                  <FaCartPlus /> Requested Meals
                 </NavLink>
               </li>
               <li>
@@ -78,11 +77,7 @@ const Dashboard = () => {
                   <MdRateReview /> My Reviews
                 </NavLink>
               </li>
-              <li>
-                <NavLink to="/dashboard/cart">
-                  <FaCartPlus /> Cart
-                </NavLink>
-              </li>
+
               <li>
                 <NavLink to="/dashboard/paymentHistory">
                   <FaList /> Payment History
