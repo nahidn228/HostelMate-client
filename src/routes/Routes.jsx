@@ -8,6 +8,8 @@ import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
 import MealDetails from "../pages/MealDetails";
 import UpcomingMeals from "../pages/UpcomingMeals";
+import AddMeal from "../pages/dashboard/Admin/AddMeal";
+import AdminHome from "../pages/dashboard/Admin/AdminHome";
 import ManageUsers from "../pages/dashboard/Admin/ManageUsers";
 import MyReviews from "../pages/dashboard/Users/MyReviews";
 import PaymentHistory from "../pages/dashboard/Users/PaymentHistory";
@@ -68,10 +70,30 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "myProfile",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AdminHome />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "add-meal",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AddMeal />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
 
       //User Route
       {
-        path: "userHome",
+        path: "myProfile",
         element: <UserHome />,
       },
       {

@@ -10,7 +10,7 @@ const Navbar = () => {
     <div className="navbar shadow-sm  mx-auto  bg-white   font-semibold">
       <div className="navbar-start ">
         <div className="dropdown  lg:hidden">
-          <div tabIndex={0}  className="items-center gap-4 flex">
+          <div tabIndex={0} className="items-center gap-4 flex">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -25,11 +25,10 @@ const Navbar = () => {
                 d="M4 6h16M4 12h16M4 18h7"
               />
             </svg>
-           
-           <Link to="/" className="flex gap-2 items-center">
+
+            <Link to="/" className="flex gap-2 items-center">
               <span className="font-bold text-black text-xl">HostelMate</span>
             </Link>
-         
           </div>
           <ul
             tabIndex={0}
@@ -105,7 +104,7 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link to="/dashboard" className="justify-between">
+                <Link to="dashboard/myProfile" className="justify-between">
                   Dashboard
                 </Link>
               </li>
