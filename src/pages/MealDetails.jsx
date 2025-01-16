@@ -4,14 +4,14 @@ import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import useAxiosPublic from "./../hooks/useAxiosPublic";
 import useAxiosSecure from "./../hooks/useAxiosSecure";
 
 const MealDetails = () => {
   const { user } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const { id } = useParams();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
@@ -98,6 +98,7 @@ const MealDetails = () => {
       console.log("Meal request Successful :", data);
       if (data?.acknowledged === true) {
         toast.success(`${meal?.title} is Successfully request for order`);
+        navigate("/dashboard/mealRequest");
       }
     } catch (err) {
       console.error("Failed to add Food request:", err);
