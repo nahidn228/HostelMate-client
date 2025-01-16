@@ -1,25 +1,21 @@
 import { FaHome, FaList, FaUsers } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa6";
-import { MdFastfood } from "react-icons/md";
-import { MdUpcoming } from "react-icons/md";
+import { GiHotMeal } from "react-icons/gi";
 import {
   MdEmail,
+  MdFastfood,
   MdOutlineRestaurantMenu,
   MdRateReview,
   MdRestaurant,
+  MdUpcoming,
 } from "react-icons/md";
-import { GiHotMeal } from "react-icons/gi";
 import { RiHome7Fill } from "react-icons/ri";
 import { SlCalender } from "react-icons/sl";
 import { NavLink, Outlet } from "react-router-dom";
-// import useAdmin from "../hooks/useAdmin";
-// import useCart from "../hooks/useCart";
-const Dashboard = () => {
-  //   const [cart] = useCart();
+import useAdmin from "../hooks/useAdmin";
 
-  // TODO: get isAdmin value from the database
-  // const [isAdmin] = useAdmin();
-  const isAdmin = true;
+const Dashboard = () => {
+  const [isAdmin] = useAdmin();
 
   return (
     <div className="flex">
