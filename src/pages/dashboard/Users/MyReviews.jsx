@@ -8,7 +8,7 @@ import { AuthContext } from "./../../../providers/AuthProvider";
 const MyReviews = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
-  const { data: reviews } = useQuery({
+  const { data: reviews = [] } = useQuery({
     queryKey: ["reviews"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/reviews/${user.email}`);
@@ -34,25 +34,26 @@ const MyReviews = () => {
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
-            <tr>
-              <th>1</th>
-              <td>Meal Title</td>
-              <td>Likes Count</td>
-              <td>Reviews count</td>
-              <td>
-                <button className="btn btn-ghost text-lg ">
-                  <FaEdit />
-                </button>
-              </td>
+            {reviews?.map((review, idx) => (
+              <tr key={review._id}>
+                <th>{idx + 1}</th>
+                <td>{review.reviewMealTitle}</td>
+                <td>{review.reviewMealLikes}</td>
+                <td>{review.reviewText.slice(0, 50)}...</td>
+                <td>
+                  <button className="btn btn-ghost text-lg ">
+                    <FaEdit />
+                  </button>
+                </td>
 
-              <td>
-                <button className="btn btn-ghost text-lg text-orange-700">
-                  <IoTrashBin />
-                </button>
-              </td>
-              <td>View Meal</td>
-            </tr>
+                <td>
+                  <button className="btn btn-ghost text-lg text-orange-700">
+                    <IoTrashBin />
+                  </button>
+                </td>
+                <td>View Meal</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
