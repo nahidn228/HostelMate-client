@@ -8,7 +8,10 @@ import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
 import MealDetails from "../pages/MealDetails";
 import UpcomingMeals from "../pages/UpcomingMeals";
-import ManageUsers from "../pages/dashboard/ManageUsers";
+import ManageUsers from "../pages/dashboard/Admin/ManageUsers";
+import UserHome from "../pages/dashboard/Users/UserHome";
+import AdminRoute from "./AdminRoute";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -44,14 +47,29 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
-
       //Admin Route
-      
+
       {
         path: "manage-users",
-        element: <ManageUsers />,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageUsers />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+
+      //User Route
+      {
+        path: "userHome",
+        element: <UserHome />,
       },
     ],
   },

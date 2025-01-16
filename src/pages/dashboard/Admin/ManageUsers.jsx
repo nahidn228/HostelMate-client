@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 import { FaUserAlt } from "react-icons/fa";
 import { IoTrashBin } from "react-icons/io5";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
   const { data: users = [], refetch } = useQuery({
