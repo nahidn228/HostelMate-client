@@ -1,19 +1,19 @@
 import axios from "axios";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import useAuth from "./useAuth";
+import { AuthContext } from "./../providers/AuthProvider";
 
 const axiosSecure = axios.create({
   baseURL: "http://localhost:5000",
 });
 const useAxiosSecure = () => {
   const navigate = useNavigate();
-  const { logOutUser } = useAuth();
+  const { logOutUser } = useContext(AuthContext);
 
   // request interceptor to add authorization header for every secure call to teh api
   axiosSecure.interceptors.request.use(
     function (config) {
       const token = localStorage.getItem("access-token");
-      // console.log('request stopped by interceptors', token)
       config.headers.authorization = `Bearer ${token}`;
       return config;
     },

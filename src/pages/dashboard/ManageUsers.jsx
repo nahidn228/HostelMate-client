@@ -4,17 +4,13 @@ import { toast } from "react-hot-toast";
 import { FaUserAlt } from "react-icons/fa";
 import { IoTrashBin } from "react-icons/io5";
 import Swal from "sweetalert2";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 const ManageUsers = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await axiosPublic.get("/users", {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("access-token")}`,
-        },
-      });
+      const res = await axiosSecure.get("/users");
       return res.data;
     },
   });
@@ -29,7 +25,7 @@ const ManageUsers = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosPublic.delete(`/users/${user?._id}`).then((res) => {
+        axiosSecure.delete(`/users/${user?._id}`).then((res) => {
           if (res.data.deletedCount > 0) {
             refetch();
             Swal.fire({
@@ -54,7 +50,7 @@ const ManageUsers = () => {
         confirmButtonText: "Yes, Make Admin",
       }).then((result) => {
         if (result.isConfirmed) {
-          axiosPublic.patch(`/users/admin/${user?._id}`).then((res) => {
+          axiosSecure.patch(`/users/admin/${user?._id}`).then((res) => {
             console.log(res.data);
             if (res.data.modifiedCount > 0) {
               refetch();
