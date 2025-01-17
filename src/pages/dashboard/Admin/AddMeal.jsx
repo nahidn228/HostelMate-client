@@ -61,31 +61,38 @@ const AddMeal = () => {
   };
 
   return (
-    <div>
+    <div className="p-8 bg-gray-50 rounded-lg shadow-lg">
+      <h2 className="text-3xl font-extrabold text-center text-[#D1A054] mb-6">
+        Add Your Meal <MdRestaurant className="inline text-3xl ml-2" />
+      </h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-6 ">
-          {/* Recipe Name */}
-          <label className="form-control w-full ">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Meal Name */}
+          <label className="form-control w-full">
             <div className="label">
-              <span className="label-text">Meal Name*</span>
+              <span className="label-text text-lg font-semibold text-gray-700">
+                Meal Name*
+              </span>
             </div>
             <input
               {...register("name", { required: true, maxLength: 50 })}
               type="text"
-              placeholder="Meal Name"
-              className="input input-bordered w-full "
+              placeholder="Enter meal name"
+              className="input input-bordered w-full border-gray-300 focus:ring-[#D1A054] focus:border-[#D1A054]"
             />
           </label>
 
           {/* Category */}
-          <label className="form-control w-full ">
+          <label className="form-control w-full">
             <div className="label">
-              <span className="label-text">Category*</span>
+              <span className="label-text text-lg font-semibold text-gray-700">
+                Category*
+              </span>
             </div>
             <select
               defaultValue="default"
               {...register("category", { required: true })}
-              className="select select-bordered w-full "
+              className="select select-bordered w-full border-gray-300 focus:ring-[#D1A054] focus:border-[#D1A054]"
             >
               <option disabled value="default">
                 Select a category
@@ -99,81 +106,99 @@ const AddMeal = () => {
           {/* Distributor Name */}
           <label className="form-control w-full">
             <div className="label">
-              <span className="label-text">Distributor Name</span>
+              <span className="label-text text-lg font-semibold text-gray-700">
+                Distributor Name
+              </span>
             </div>
             <input
               type="text"
               value={user?.displayName || ""}
               readOnly
-              className="input input-bordered w-full bg-gray-100"
+              className="input input-bordered w-full bg-gray-100 border-gray-300"
             />
           </label>
 
           {/* Distributor Email */}
           <label className="form-control w-full">
             <div className="label">
-              <span className="label-text">Distributor Email</span>
+              <span className="label-text text-lg font-semibold text-gray-700">
+                Distributor Email
+              </span>
             </div>
             <input
               type="email"
               value={user?.email || ""}
               readOnly
-              className="input input-bordered w-full bg-gray-100"
+              className="input input-bordered w-full bg-gray-100 border-gray-300"
             />
           </label>
 
           {/* Price */}
           <label className="form-control w-full">
             <div className="label">
-              <span className="label-text">Price*</span>
+              <span className="label-text text-lg font-semibold text-gray-700">
+                Price*
+              </span>
             </div>
             <input
               {...register("price", { required: true })}
               type="number"
               step="0.01"
-              placeholder="Enter Price"
-              className="input input-bordered w-full "
+              placeholder="Enter price"
+              className="input input-bordered w-full border-gray-300 focus:ring-[#D1A054] focus:border-[#D1A054]"
             />
           </label>
 
           {/* Ingredients */}
           <label className="form-control w-full">
             <div className="label">
-              <span className="label-text">Ingredients*</span>
+              <span className="label-text text-lg font-semibold text-gray-700">
+                Ingredients*
+              </span>
             </div>
             <input
               {...register("ingredients", { required: true })}
               type="text"
-              placeholder="Enter ingredients separated by spaces"
-              className="input input-bordered w-full "
+              placeholder="Enter ingredients (e.g., tomato, cheese)"
+              className="input input-bordered w-full border-gray-300 focus:ring-[#D1A054] focus:border-[#D1A054]"
             />
           </label>
         </div>
 
         {/* Recipe Details */}
-        <label className="form-control">
+        <label className="form-control w-full mt-6">
           <div className="label">
-            <span className="label-text">Recipe Details*</span>
+            <span className="label-text text-lg font-semibold text-gray-700">
+              Recipe Details*
+            </span>
           </div>
           <textarea
             {...register("recipe", { required: true })}
-            className="textarea textarea-bordered h-24"
-            placeholder="Recipe Details"
+            className="textarea textarea-bordered w-full h-24 border-gray-300 focus:ring-[#D1A054] focus:border-[#D1A054]"
+            placeholder="Enter detailed recipe"
           ></textarea>
         </label>
 
         {/* Upload Image */}
         <div className="form-control my-6">
+          <label className="label">
+            <span className="label-text text-lg font-semibold text-gray-700">
+              Upload Image
+            </span>
+          </label>
           <input
             type="file"
             {...register("image")}
-            className="file-input w-full max-w-xs"
+            className="file-input w-full max-w-xs border-gray-300 focus:ring-[#D1A054] focus:border-[#D1A054]"
           />
         </div>
 
         {/* Submit Button */}
-        <button className="btn flex gap-1 bg-[#D1A054]">
-          Add Meal <MdRestaurant />
+        <button
+          type="submit"
+          className="btn bg-[#D1A054] text-white w-full hover:bg-[#2B3440] hover:text-white mt-4"
+        >
+          Add Meal <MdRestaurant className="ml-2" />
         </button>
       </form>
     </div>

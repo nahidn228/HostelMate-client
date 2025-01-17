@@ -77,98 +77,91 @@ const ManageUsers = () => {
   }, [refetch, search]);
 
   return (
-    <div>
-     
+    <div className="max-w-7xl mx-auto p-6 bg-white shadow-md rounded-lg">
+  <form className="flex items-center justify-between mb-10">
+    <h2 className="text-3xl font-semibold text-[#2B3440] mb-5">All Users: {users.length}</h2>
+    
+    <label className="input input-bordered flex items-center gap-2 border-[#D1A054]">
+      <input
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        type="text"
+        className="grow text-[#2B3440] focus:outline-none"
+        placeholder="Enter User Name or Email"
+      />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 16 16"
+        fill="currentColor"
+        className="h-4 w-4 opacity-70 text-[#D1A054]"
+      >
+        <path
+          fillRule="evenodd"
+          d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </label>
+  </form>
 
-      <form className='flex items-center justify-between mb-10'>
-      <h2 className="text-2xl font-mono mb-5">All Users: {users.length} </h2>
-          <label className="input input-bordered flex items-center gap-2">
-            <input
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              type="text"
-              className="grow"
-              placeholder="Enter User Name or Email"
-            />
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-              className="h-4 w-4 opacity-70"
-            >
-              <path
-                fillRule="evenodd"
-                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </label>
-
-          {/* <button
-            type="button"
-            className="mt-2 sm:mt-0 sm:ml-2 px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none"
-          >
-            Search
-          </button>    */}
-      </form>
-
-      <div className="overflow-x-auto">
-        <table className="table">
-          {/* head */}
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Badge</th>
-              <th>Role</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user, idx) => (
-              <tr key={user._id}>
-                <th>{idx + 1}</th>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle h-12 w-12">
-                        <img src={user?.photo} alt={user?.name} />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="font-bold">{user?.name}</div>
-                    </div>
+  <div className="overflow-x-auto">
+    <table className="table-auto w-full bg-gray-50 shadow-md rounded-lg">
+      {/* head */}
+      <thead className="bg-[#2B3440] text-white">
+        <tr>
+          <th className="px-4 py-2">#</th>
+          <th className="px-4 py-2">Name</th>
+          <th className="px-4 py-2">Email</th>
+          <th className="px-4 py-2">Badge</th>
+          <th className="px-4 py-2">Role</th>
+          <th className="px-4 py-2">Action</th>
+        </tr>
+      </thead>
+      <tbody className="text-[#2B3440]">
+        {users.map((user, idx) => (
+          <tr key={user._id} className="hover:bg-[#D1A054]">
+            <td className="px-4 py-2">{idx + 1}</td>
+            <td className="px-4 py-2">
+              <div className="flex items-center gap-3">
+                <div className="avatar">
+                  <div className="mask mask-squircle h-12 w-12">
+                    <img src={user?.photo} alt={user?.name} />
                   </div>
-                </td>
-                <td>{user?.email}</td>
-                <td>{user?.badge}</td>
-                <td className="text-xl">
-                  {user.role === "admin" ? (
-                    <p className="font-semibold text-base">Admin</p>
-                  ) : (
-                    <button
-                      onClick={() => handleMakeAdmin(user)}
-                      className="btn btn-ghost text-lg "
-                    >
-                      <FaUserAlt />
-                    </button>
-                  )}
-                </td>
-                <th>
-                  <button
-                    onClick={() => handleDeleteUser(user)}
-                    className="btn btn-ghost text-lg text-orange-700"
-                  >
-                    <IoTrashBin />
-                  </button>
-                </th>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+                </div>
+                <div>
+                  <div className="font-bold">{user?.name}</div>
+                </div>
+              </div>
+            </td>
+            <td className="px-4 py-2">{user?.email}</td>
+            <td className="px-4 py-2">{user?.badge}</td>
+            <td className="px-4 py-2 text-xl">
+              {user.role === "admin" ? (
+                <p className="font-semibold text-base">Admin</p>
+              ) : (
+                <button
+                  onClick={() => handleMakeAdmin(user)}
+                  className="btn btn-ghost text-lg text-[#D1A054] hover:text-[#2B3440]"
+                >
+                  <FaUserAlt />
+                </button>
+              )}
+            </td>
+            <th className="px-4 py-2">
+              <button
+                onClick={() => handleDeleteUser(user)}
+                className="btn btn-ghost text-lg text-red-600 hover:text-red-800"
+              >
+                <IoTrashBin />
+              </button>
+            </th>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
   );
 };
 
