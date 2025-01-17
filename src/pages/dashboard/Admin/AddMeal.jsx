@@ -20,34 +20,34 @@ const AddMeal = () => {
     console.log(data);
     //image upload to imgbb and then get url
     const imageFile = { image: data.image[0] };
-    const res = await axiosPublic.post(image_hosting_api, imageFile, {
+    const imgBB = await axiosPublic.post(image_hosting_api, imageFile, {
       headers: {
         "content-type": "multipart/form-data",
       },
     });
-    console.log("with image url", res.data);
+    console.log("with image url", imgBB.data);
 
-    if (res.data.success) {
+    if (imgBB?.data?.success) {
       // now send the menu item data to the server with the image url
       const mealItem = {
-        title: data.name,
+        title: data?.name,
         distributorName: user?.displayName,
         distributorEmail: user?.email,
-        category: data.category,
-        ingredients: data.ingredients.split(" "),
+        category: data?.category,
+        ingredients: data?.ingredients.split(" "),
         rating: 0,
         likes: 0,
         postTime: new Date().toISOString(),
         mealRequest: 0,
         reviews: [],
-        price: parseFloat(data.price),
-        description: data.recipe,
-        mealImage: res.data.data.display_url,
+        price: parseFloat(data?.price),
+        description: data?.recipe,
+        mealImage: imgBB?.data?.data?.display_url,
       };
 
-      const { data } = await axiosSecure.post("/meal", mealItem);
-      console.log(data);
-      if (data.insertedId) {
+      const res = await axiosSecure.post("/meal", mealItem);
+      console.log(res?.data);
+      if (res?.data?.insertedId) {
         reset();
         Swal.fire({
           position: "top-end",
