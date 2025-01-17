@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GiHotMeal } from "react-icons/gi";
 import Swal from "sweetalert2";
 import useAxiosSecure from "./../../../hooks/useAxiosSecure";
@@ -29,6 +29,10 @@ const ServeMeal = () => {
       });
     }
   };
+
+  useEffect(() => {
+    refetch();
+  }, [refetch, search]);
 
   return (
     <div>

@@ -2,7 +2,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { AiOutlineClose } from "react-icons/ai";
 import { FaUserAlt } from "react-icons/fa";
 import { IoTrashBin } from "react-icons/io5";
 import Swal from "sweetalert2";
@@ -72,43 +71,45 @@ const ManageUsers = () => {
       toast.error(err);
     }
   };
- 
-   useEffect(() => {
+
+  useEffect(() => {
     refetch();
   }, [refetch, search]);
 
   return (
     <div>
-      <h2 className="text-2xl font-mono mb-5">All Users: {users.length} </h2>
      
 
-      <form
-        
-      >
-        <div className="flex flex-col sm:flex-row p-1 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300">
-          <label htmlFor="search" className="sr-only">
-            Enter User Name or Email
+      <form className='flex items-center justify-between mb-10'>
+      <h2 className="text-2xl font-mono mb-5">All Users: {users.length} </h2>
+          <label className="input input-bordered flex items-center gap-2">
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              type="text"
+              className="grow"
+              placeholder="Enter User Name or Email"
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              className="h-4 w-4 opacity-70"
+            >
+              <path
+                fillRule="evenodd"
+                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                clipRule="evenodd"
+              />
+            </svg>
           </label>
-          <input
-            id="search"
-            className="flex-1 px-6 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none focus:ring focus:ring-blue-300"
-            type="text"
-            name="search"
-            placeholder="Enter User Name or Email"
-            aria-label="Enter User Name or Email"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            required
-          
-          />
-         
-          <button
+
+          {/* <button
             type="button"
             className="mt-2 sm:mt-0 sm:ml-2 px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none"
           >
             Search
-          </button>
-        </div>
+          </button>    */}
       </form>
 
       <div className="overflow-x-auto">
