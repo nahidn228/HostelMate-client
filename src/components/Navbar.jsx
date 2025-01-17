@@ -2,9 +2,11 @@ import { useContext } from "react";
 import { IoNotifications } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
+import useAdmin from "./../hooks/useAdmin";
 import HostelMateIcon from "./HostelMateIcon";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [isAdmin] = useAdmin();
 
   return (
     <div className="navbar shadow-sm  mx-auto  bg-white   font-semibold">
@@ -104,7 +106,10 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link to="dashboard/myProfile" className="justify-between">
+                <Link
+                  to={`dashboard/${isAdmin ? "myAdminProfile" : "userProfile"}`}
+                  className="justify-between"
+                >
                   Dashboard
                 </Link>
               </li>

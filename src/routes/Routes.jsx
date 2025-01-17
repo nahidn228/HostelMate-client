@@ -74,7 +74,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "myProfile",
+        path: "myAdminProfile",
         element: (
           <PrivateRoute>
             <AdminRoute>
@@ -126,7 +126,7 @@ const router = createBrowserRouter([
 
       //User Route
       {
-        path: "myProfile",
+        path: "userProfile",
         element: <UserHome />,
       },
       {

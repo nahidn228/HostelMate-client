@@ -1,15 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { GiHotMeal } from "react-icons/gi";
 import Swal from "sweetalert2";
 import useAxiosSecure from "./../../../hooks/useAxiosSecure";
 
 const ServeMeal = () => {
   const axiosSecure = useAxiosSecure();
+  const [search, setSearch] = useState("");
 
   const { data: serveMeals = [], refetch } = useQuery({
     queryKey: ["meals"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/requestMeal");
+      const res = await axiosSecure.get(`/requestMeal?search=${search}`);
       return res.data;
     },
   });
@@ -30,7 +32,18 @@ const ServeMeal = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-mono mb-10">Serve Meals </h2>
+      <div className="flex items-center justify-between mb-10">
+        <h2 className="text-2xl font-mono ">Serve Meals </h2>
+        <div className="join">
+          <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="input input-bordered join-item"
+            placeholder="Email"
+          />
+          <button className="btn join-item rounded-r-full">Search</button>
+        </div>
+      </div>
       <div className="overflow-x-auto font-sans min-h-screen">
         <table className="table">
           {/* head */}
