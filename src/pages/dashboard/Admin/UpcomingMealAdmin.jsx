@@ -1,11 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import {
-  FaArrowAltCircleLeft,
-  FaArrowAltCircleRight,
-  FaEdit,
-} from "react-icons/fa";
-import { IoTrashBin } from "react-icons/io5";
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "./../../../hooks/useAxiosSecure";
 
@@ -15,7 +10,7 @@ const UpcomingMealAdmin = () => {
   const [page, setPage] = useState(1);
   const limit = 10;
 
-  const { data: { meals = [], totalPages } = {} } = useQuery({
+  const { data: { meals = [], totalPages } = {}, refetch } = useQuery({
     queryKey: ["meals", sort, page],
     queryFn: async () => {
       const res = await axiosSecure.get(
@@ -57,7 +52,11 @@ const UpcomingMealAdmin = () => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         const res = await axiosSecure.post("/meal", mealItem);
-        console.log(res?.data);
+        console.log("Add to All Meals---->", res?.data);
+        axiosSecure.delete(`/upcomingMeals/${meal._id}`).then((data) => {
+          refetch();
+          console.log("Delete from Upcoming Meals---->", data);
+        });
 
         Swal.fire("Published!", "", "success");
       } else if (result.isDenied) {
@@ -95,10 +94,9 @@ const UpcomingMealAdmin = () => {
               <th></th>
               <th>Title</th>
               <th>Likes</th>
-              <th>Reviews Count</th>
+
               <th>Distributor Name</th>
-              <th>Update</th>
-              <th>Delete</th>
+
               <th>View Meal</th>
             </tr>
           </thead>
@@ -108,24 +106,9 @@ const UpcomingMealAdmin = () => {
                 <th>{idx + 1}</th>
                 <td>{meal.title}</td>
                 <td>{meal.likes}</td>
-                <td>{meal.reviews?.length || 0}</td>
+
                 <td>{meal.distributorName || "N/A"}</td>
-                <td>
-                  <button
-                    aria-label="Update Meal"
-                    className="btn btn-ghost text-lg"
-                  >
-                    <FaEdit />
-                  </button>
-                </td>
-                <td>
-                  <button
-                    aria-label="Delete Meal"
-                    className="btn btn-ghost text-lg text-orange-700"
-                  >
-                    <IoTrashBin />
-                  </button>
-                </td>
+
                 <td>
                   <button
                     onClick={() => handlePublish(meal)}
