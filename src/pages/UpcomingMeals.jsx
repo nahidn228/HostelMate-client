@@ -13,9 +13,9 @@ const UpcomingMeals = () => {
   const axiosPublic = useAxiosPublic();
   const [isLiked, setIsLiked] = useState(false);
   const { data: meals = [], refetch } = useQuery({
-    queryKey: ["upcomingMeals"],
+    queryKey: ["upcoming"],
     queryFn: async () => {
-      const res = await axiosPublic.get("/upcomingMeals");
+      const res = await axiosPublic.get("/upcoming");
       return res.data;
     },
   });

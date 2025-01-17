@@ -66,7 +66,7 @@ const Navbar = () => {
               <Link to="/meals">Meals</Link>
             </li>
             <li>
-              <Link to="/upcomingMeals">Upcoming Meals</Link>
+              <Link to="/upcoming">Upcoming Meals</Link>
             </li>
             {/* notification */}
             <li>
