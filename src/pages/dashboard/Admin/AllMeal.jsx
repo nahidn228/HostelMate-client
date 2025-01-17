@@ -1,21 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { FaEdit } from "react-icons/fa";
+import {
+  FaArrowAltCircleLeft,
+  FaArrowAltCircleRight,
+  FaEdit,
+} from "react-icons/fa";
 import { IoTrashBin } from "react-icons/io5";
-import useAxiosPublic from "./../../../hooks/useAxiosPublic";
-import { FaArrowAltCircleLeft } from "react-icons/fa";
-import { FaArrowAltCircleRight } from "react-icons/fa";
+import useAxiosSecure from "./../../../hooks/useAxiosSecure";
 
 const AllMeal = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const [sort, setSort] = useState("");
   const [page, setPage] = useState(1);
   const limit = 10;
 
-  const { data: { meals = [], totalPages } = {}, refetch } = useQuery({
+  const { data: { meals = [], totalPages } = {} } = useQuery({
     queryKey: ["meals", sort, page],
     queryFn: async () => {
-      const res = await axiosPublic.get(
+      const res = await axiosSecure.get(
         `/allMeals?sort=${sort}&page=${page}&limit=${limit}`
       );
       return res.data;
@@ -45,7 +47,7 @@ const AllMeal = () => {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto min-h-screen">
         <table className="table">
           <thead>
             <tr>
@@ -98,13 +100,13 @@ const AllMeal = () => {
         >
           <FaArrowAltCircleLeft />
         </button>
-        <span className='font-semibold font-lato'> {page}</span>
+        <span className="font-semibold font-lato"> {page}</span>
         <button
           disabled={page === totalPages}
           onClick={() => setPage((prev) => prev + 1)}
           className="btn btn-sm text-xl"
         >
-           <FaArrowAltCircleRight />
+          <FaArrowAltCircleRight />
         </button>
       </div>
     </div>

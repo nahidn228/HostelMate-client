@@ -11,6 +11,7 @@ import UpcomingMeals from "../pages/UpcomingMeals";
 import AddMeal from "../pages/dashboard/Admin/AddMeal";
 import AdminHome from "../pages/dashboard/Admin/AdminHome";
 import AllMeal from "../pages/dashboard/Admin/AllMeal";
+import AllReviews from "../pages/dashboard/Admin/AllReviews";
 import ManageUsers from "../pages/dashboard/Admin/ManageUsers";
 import MyReviews from "../pages/dashboard/Users/MyReviews";
 import PaymentHistory from "../pages/dashboard/Users/PaymentHistory";
@@ -97,6 +98,16 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <AdminRoute>
               <AllMeal />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "allReviews",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AllReviews />
             </AdminRoute>
           </PrivateRoute>
         ),
