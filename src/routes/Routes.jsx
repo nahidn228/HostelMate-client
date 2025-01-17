@@ -20,6 +20,7 @@ import RequestedMeal from "../pages/dashboard/Users/RequestedMeal";
 import UserHome from "../pages/dashboard/Users/UserHome";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
+import UpcomingMealAdmin from "../pages/dashboard/Admin/UpcomingMealAdmin";
 
 const router = createBrowserRouter([
   {
@@ -119,6 +120,16 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <AdminRoute>
               <ServeMeal />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "upcomingMeals",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <UpcomingMealAdmin />
             </AdminRoute>
           </PrivateRoute>
         ),

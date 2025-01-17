@@ -31,19 +31,22 @@ const AllMeal = () => {
   return (
     <div>
       {/* Sorting Options */}
-      <div className="flex gap-4 items-center justify-center mb-10">
-        <select
-          className="border p-4 rounded-md"
-          value={sort}
-          onChange={(e) => setSort(e.target.value)}
-        >
-          <option value="">Sort By Likes</option>
-          <option value="asc">Ascending</option>
-          <option value="desc">Descending</option>
-        </select>
-        <button onClick={handleReset} className="btn" disabled={!sort}>
-          Reset
-        </button>
+      <div className="flex gap-4 items-center justify-between mb-10">
+        <h2 className="text-2xl font-mono ">All Meals </h2>
+        <div className="flex gap-3 items-center">
+          <select
+            className="border p-3 rounded-xl btn btn-outline text-center"
+            value={sort}
+            onChange={(e) => setSort(e.target.value)}
+          >
+            <option value="">Sort By Likes</option>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+          <button onClick={handleReset} className="btn" disabled={!sort}>
+            Reset
+          </button>
+        </div>
       </div>
 
       {/* Table */}

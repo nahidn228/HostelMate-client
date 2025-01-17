@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaUserAlt } from "react-icons/fa";
@@ -72,20 +72,18 @@ const ManageUsers = () => {
       toast.error(err);
     }
   };
-  const handleClear = () => {
+ 
+   useEffect(() => {
     refetch();
-    setSearch("");
-  };
+  }, [refetch, search]);
 
   return (
     <div>
-      <h2 className="text-2xl">All Users {users.length} </h2>
+      <h2 className="text-2xl font-mono mb-5">All Users: {users.length} </h2>
+     
 
       <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          refetch();
-        }}
+        
       >
         <div className="flex flex-col sm:flex-row p-1 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300">
           <label htmlFor="search" className="sr-only">
@@ -101,19 +99,11 @@ const ManageUsers = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             required
+          
           />
-          {search && (
-            <button
-              type="button"
-              onClick={handleClear}
-              className="mt-2 sm:mt-0 sm:ml-2 px-1 py-3 text-gray-400 hover:text-gray-700 transition duration-300 focus:outline-none"
-              aria-label="Clear Search"
-            >
-              <AiOutlineClose size={20} />
-            </button>
-          )}
+         
           <button
-            type="submit"
+            type="button"
             className="mt-2 sm:mt-0 sm:ml-2 px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none"
           >
             Search
