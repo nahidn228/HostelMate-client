@@ -111,6 +111,7 @@ const MealDetails = () => {
         reviews: meal?.reviews,
         status: "pending",
         email: user?.email,
+        name: user?.displayName,
       };
       const { data } = await axiosSecure.post(
         `/requestMeal/${id}`,

@@ -13,6 +13,7 @@ import AdminHome from "../pages/dashboard/Admin/AdminHome";
 import AllMeal from "../pages/dashboard/Admin/AllMeal";
 import AllReviews from "../pages/dashboard/Admin/AllReviews";
 import ManageUsers from "../pages/dashboard/Admin/ManageUsers";
+import ServeMeal from "../pages/dashboard/Admin/ServeMeal";
 import MyReviews from "../pages/dashboard/Users/MyReviews";
 import PaymentHistory from "../pages/dashboard/Users/PaymentHistory";
 import RequestedMeal from "../pages/dashboard/Users/RequestedMeal";
@@ -108,6 +109,16 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <AdminRoute>
               <AllReviews />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "serveMeals",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ServeMeal />
             </AdminRoute>
           </PrivateRoute>
         ),
