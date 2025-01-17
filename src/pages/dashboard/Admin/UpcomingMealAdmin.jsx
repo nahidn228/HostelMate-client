@@ -6,6 +6,7 @@ import {
   FaEdit,
 } from "react-icons/fa";
 import { IoTrashBin } from "react-icons/io5";
+import Swal from "sweetalert2";
 import useAxiosSecure from "./../../../hooks/useAxiosSecure";
 
 const UpcomingMealAdmin = () => {
@@ -26,6 +27,43 @@ const UpcomingMealAdmin = () => {
 
   const handleReset = () => {
     setSort("");
+  };
+
+  const handlePublish = (meal) => {
+    const mealItem = {
+      category: meal?.category,
+      description: meal?.description,
+      distributorName: meal?.distributorName,
+      ingredients: meal?.ingredients,
+      likedBy: meal?.likedBy,
+      likes: meal?.likes,
+      mealImage: meal?.mealImage,
+      mealRequest: meal?.mealRequest,
+      postTime: new Date().toISOString(),
+      price: meal?.price,
+      rating: meal?.rating,
+      reviews: meal?.reviews,
+      title: meal?.title,
+      upcomingMealID: meal?._id,
+    };
+
+    Swal.fire({
+      title: `Do you want to Publish ${meal?.title}`,
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Publish",
+      denyButtonText: `Don't Publish`,
+    }).then(async (result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        const res = await axiosSecure.post("/meal", mealItem);
+        console.log(res?.data);
+
+        Swal.fire("Published!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire(`${meal?.title} are not published`, "", "info");
+      }
+    });
   };
 
   return (
@@ -89,7 +127,12 @@ const UpcomingMealAdmin = () => {
                   </button>
                 </td>
                 <td>
-                  <button className="btn btn-outline">Publish</button>
+                  <button
+                    onClick={() => handlePublish(meal)}
+                    className="btn btn-outline"
+                  >
+                    Publish
+                  </button>
                 </td>
               </tr>
             ))}

@@ -40,7 +40,7 @@ const AddMeal = () => {
         postTime: new Date().toISOString(),
         mealRequest: 0,
         reviews: [],
-        price: parseFloat(data?.price),
+        price: parseFloat(data?.price).toFixed(2),
         description: data?.recipe,
         mealImage: imgBB?.data?.data?.display_url,
       };
@@ -130,6 +130,7 @@ const AddMeal = () => {
             <input
               {...register("price", { required: true })}
               type="number"
+              step="0.01"
               placeholder="Enter Price"
               className="input input-bordered w-full "
             />
