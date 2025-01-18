@@ -10,7 +10,7 @@ const UserHome = () => {
   const { data: singleUser } = useQuery({
     queryKey: ["user"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/user/${user?.email}`);
+      const res = await axiosSecure.get(`/user/${user.email}`);
       return res.data;
     },
   });

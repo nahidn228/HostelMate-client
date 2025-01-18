@@ -1,4 +1,4 @@
-const PaymentHistory = () => {
+const PaymentHistoryUser = () => {
   return (
     <div className="p-6 bg-[#D1A054]  text-white rounded-lg shadow-lg">
       <h2 className="text-2xl font-mono mb-4">My All Payments</h2>
@@ -34,4 +34,4 @@ const PaymentHistory = () => {
   );
 };
 
-export default PaymentHistory;
+export default PaymentHistoryUser;

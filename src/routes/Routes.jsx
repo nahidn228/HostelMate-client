@@ -15,8 +15,9 @@ import AllReviews from "../pages/dashboard/Admin/AllReviews";
 import ManageUsers from "../pages/dashboard/Admin/ManageUsers";
 import ServeMeal from "../pages/dashboard/Admin/ServeMeal";
 import UpcomingMealAdmin from "../pages/dashboard/Admin/UpcomingMealAdmin";
+import Payment from "../pages/dashboard/Payment/Payment";
 import MyReviews from "../pages/dashboard/Users/MyReviews";
-import PaymentHistory from "../pages/dashboard/Users/PaymentHistory";
+import PaymentHistoryUser from "../pages/dashboard/Users/PaymentHistoryUser";
 import RequestedMeal from "../pages/dashboard/Users/RequestedMeal";
 import UserHome from "../pages/dashboard/Users/UserHome";
 import AdminRoute from "./AdminRoute";
@@ -149,8 +150,12 @@ const router = createBrowserRouter([
         element: <MyReviews />,
       },
       {
+        path: "payment",
+        element: <Payment />,
+      },
+      {
         path: "paymentHistory",
-        element: <PaymentHistory />,
+        element: <PaymentHistoryUser />,
       },
     ],
   },

@@ -2,6 +2,8 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+
+import useCart from "../../../hooks/useCart";
 import useAxiosSecure from "./../../../hooks/useAxiosSecure";
 import { AuthContext } from "./../../../providers/AuthProvider";
 
@@ -12,19 +14,26 @@ const CheckoutForm = () => {
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState("");
   const axiosSecure = useAxiosSecure();
+  const [cart, refetch] = useCart();
 
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  //   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+
+  const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+  console.log(totalPrice);
 
   useEffect(() => {
-    axiosSecure
-      .post("/create-payment-intent", { price: totalPrice })
-      .then((res) => {
-        console.log(res.data.clientSecret);
-        setClientSecret(res.data.clientSecret);
-      });
-  }, [axiosSecure]);
+    if (totalPrice > 0) {
+      axiosSecure
+        .post("/create-payment-intent", { price: totalPrice })
+        .then((res) => {
+          console.log(res.data.clientSecret);
+          setClientSecret(res.data?.clientSecret);
+        });
+    }
+  }, [axiosSecure, totalPrice]);
+
+  // console.log("client SEcret", clientSecret);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -77,13 +86,11 @@ const CheckoutForm = () => {
           email: user?.email,
           price: totalPrice,
           transactionId: paymentIntent.id,
-          date: new Date(), //convert utc date, use moment js
-          //   cartIds: cart.map((item) => item._id),
-          //   menuItemIds: cart.map((item) => item.cartId),
-          status: "pending",
+          date: new Date(), 
+          
         };
         const res = await axiosSecure.post("/payments", payment);
-        console.log("Payment saved", res.data);
+        // console.log("Payment saved", res.data);
         refetch();
         if (res.data?.paymentResult?.insertedId) {
           Swal.fire({
