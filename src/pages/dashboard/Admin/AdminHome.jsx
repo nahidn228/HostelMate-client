@@ -7,7 +7,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 const AdminHome = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
-  const { data: singleUser } = useQuery({
+  const { data: singleUser = {} } = useQuery({
     queryKey: ["user"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/user/${user?.email}`);

@@ -37,7 +37,7 @@ const AddMeal = () => {
         ingredients: data?.ingredients.split(" "),
         rating: 0,
         likes: 0,
-        postTime: new Date().toISOString(),
+        postTime: new Date(),
         mealRequest: 0,
         reviews: [],
         price: parseFloat(data?.price).toFixed(2),

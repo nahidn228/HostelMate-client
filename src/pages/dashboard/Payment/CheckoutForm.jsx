@@ -86,12 +86,12 @@ const CheckoutForm = () => {
           email: user?.email,
           price: totalPrice,
           transactionId: paymentIntent.id,
-          date: new Date(), 
-          
+          date: new Date(),
         };
         const res = await axiosSecure.post("/payments", payment);
         // console.log("Payment saved", res.data);
         refetch();
+        console.log("CheckOut Form ----->", res.data);
         if (res.data?.paymentResult?.insertedId) {
           Swal.fire({
             title: "Thanks for your order ",

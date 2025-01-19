@@ -88,6 +88,7 @@ const PricingPlans = () => {
       name: plan.planName,
       price: plan.id,
       email: user?.email,
+      time: new Date(),
     };
 
     try {
