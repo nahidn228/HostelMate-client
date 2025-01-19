@@ -16,8 +16,8 @@ import ManageUsers from "../pages/dashboard/Admin/ManageUsers";
 import ServeMeal from "../pages/dashboard/Admin/ServeMeal";
 import UpcomingMealAdmin from "../pages/dashboard/Admin/UpcomingMealAdmin";
 import Payment from "../pages/dashboard/Payment/Payment";
+import PaymentHistory from "../pages/dashboard/Payment/PaymentHistory";
 import MyReviews from "../pages/dashboard/Users/MyReviews";
-import PaymentHistoryUser from "../pages/dashboard/Users/PaymentHistoryUser";
 import RequestedMeal from "../pages/dashboard/Users/RequestedMeal";
 import UserHome from "../pages/dashboard/Users/UserHome";
 import AdminRoute from "./AdminRoute";
@@ -139,23 +139,43 @@ const router = createBrowserRouter([
       //User Route
       {
         path: "userProfile",
-        element: <UserHome />,
+        element: (
+          <PrivateRoute>
+            <UserHome />
+          </PrivateRoute>
+        ),
       },
       {
         path: "mealRequest",
-        element: <RequestedMeal />,
+        element: (
+          <PrivateRoute>
+            <RequestedMeal />
+          </PrivateRoute>
+        ),
       },
       {
         path: "myReviews",
-        element: <MyReviews />,
+        element: (
+          <PrivateRoute>
+            <MyReviews />
+          </PrivateRoute>
+        ),
       },
       {
         path: "payment",
-        element: <Payment />,
+        element: (
+          <PrivateRoute>
+            <Payment />
+          </PrivateRoute>
+        ),
       },
       {
         path: "paymentHistory",
-        element: <PaymentHistoryUser />,
+        element: (
+          <PrivateRoute>
+            <PaymentHistory />
+          </PrivateRoute>
+        ),
       },
     ],
   },

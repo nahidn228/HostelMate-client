@@ -37,38 +37,24 @@ const UpcomingMealCard = ({ meal }) => {
     if (!user) {
       return toast.error("Please Login first to like our food");
     }
+  
 
     try {
-      // Check if the user already liked this meal
-      const alreadyLiked = meal?.likedBy?.includes(user?.email);
-
-      if (alreadyLiked) {
-        return toast.error("You have already liked this meal!");
-      }
-
-      // Prepare the data to be sent
-      const likedData = {
-        likedBy: user?.email, // Only pass likedBy to the backend
-      };
-
-      // Send PATCH request to backend
-      const { data } = await axiosPublic.patch(
-        `/upcomingMeals/${meal._id}`,
-        likedData
-      );
+      const { data } = await axiosPublic.patch(`/meals/${meal._id}`, {
+        likedBy: user?.email,
+      });
 
       console.log("Like added:", data);
-
-      // Check if the like was successfully added
       if (data?.modifiedCount > 0) {
-        setIsLiked(true); // Update local state
         toast.success(`Thank you ${user?.displayName} for liking our food`);
       } else {
         toast.error("Failed to like this meal. Please try again.");
       }
     } catch (err) {
       console.error("Failed to add like:", err);
-      toast.error("Something went wrong. Please try again.");
+      toast.error(
+        err.response?.data?.message || "Something went wrong. Please try again."
+      );
     }
   };
 

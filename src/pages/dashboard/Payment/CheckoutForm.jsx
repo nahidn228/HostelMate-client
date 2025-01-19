@@ -94,7 +94,7 @@ const CheckoutForm = () => {
         console.log("CheckOut Form ----->", res.data);
         if (res.data?.paymentResult?.insertedId) {
           Swal.fire({
-            title: "Thanks for your order ",
+            title: "Thanks for your Subscription ",
             icon: "success",
             draggable: true,
             timer: 1500,

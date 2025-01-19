@@ -38,9 +38,19 @@ const MealDetails = () => {
 
   const handleLike = async () => {
     const likes = parseInt(meal?.likes + 1);
+    const updateData = {
+      likes,
+      likedBy: user?.email,
+    };
     if (user) {
       try {
-        const { data } = await axiosSecure.patch(`/meals/${id}`, likes);
+        const likedUser = meal?.likedBy?.map((item) => item === user?.email);
+
+        if (likedUser) {
+          return toast.error(`${user?.displayName} you already Liked our food`);
+        }
+
+        const { data } = await axiosSecure.patch(`/meals/${id}`, updateData);
         console.log("Like added:", data);
         if (data?.modifiedCount > 0) {
           refetch();
