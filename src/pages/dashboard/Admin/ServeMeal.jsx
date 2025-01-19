@@ -67,12 +67,12 @@ const ServeMeal = () => {
         </thead>
         <tbody className="text-[#2B3440]">
           {serveMeals?.map((meal, idx) => (
-            <tr key={meal._id} className="hover:bg-[#D1A054]">
+            <tr key={meal._id} className="hover:bg-[#D1A054] font-thin">
               <td className="px-4 py-2">{idx + 1}</td>
               <td className="px-4 py-2">{meal.title}</td>
               <td className="px-4 py-2">{meal?.name ? meal?.name : "Anonymous"}</td>
               <td className="px-4 py-2 text-center">{meal.email}</td>
-              <td className="px-4 py-2 uppercase">{meal.status}</td>
+              <td className={`px-4 py-2 uppercase ${meal?.status === 'Delivered ' ? '  font-semibold':''}`}>{meal.status}</td>
               <td className="px-4 py-2">
                 <button
                   onClick={() => handleServe(meal)}

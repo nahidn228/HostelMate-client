@@ -6,9 +6,40 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
 // import required modules
+import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 import { EffectCoverflow, Pagination } from "swiper/modules";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const PhotoGallery = () => {
+  const handleDetails = () => {
+    Swal.fire({
+      title: `See in Below by scrolling`,
+      showClass: {
+        popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `,
+      },
+      hideClass: {
+        popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `,
+      },
+    });
+  };
+  const axiosPublic = useAxiosPublic();
+  const { data: meals = [] } = useQuery({
+    queryKey: ["meals"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/meals`);
+      return res.data;
+    },
+  });
+
   return (
     <div className="">
       <div className="container flex items-center justify-between py-10">
@@ -18,10 +49,13 @@ const PhotoGallery = () => {
             Welcome to our photo gallery
           </p>
           <h4 className=" text-2xl lg:text-4xl font-semibold">
-            Photo Gallery of Our Hotel
+            Photo Gallery of Our Food
           </h4>
         </div>
-        <button className="btn btn-outline rounded-full md:px-8 hover:bg-green-600 mt-4">
+        <button
+          onClick={handleDetails}
+          className="btn btn-outline rounded-full md:px-8 hover:bg-green-600 mt-4"
+        >
           View All
         </button>
       </div>
@@ -33,16 +67,16 @@ const PhotoGallery = () => {
           slidesPerView={4}
           breakpoints={{
             320: {
-              slidesPerView: 1, 
+              slidesPerView: 1,
             },
             640: {
-              slidesPerView: 2, 
+              slidesPerView: 2,
             },
             1024: {
-              slidesPerView: 3, 
+              slidesPerView: 3,
             },
             1280: {
-              slidesPerView: 4, 
+              slidesPerView: 4,
             },
           }}
           coverflowEffect={{
@@ -56,33 +90,11 @@ const PhotoGallery = () => {
           modules={[EffectCoverflow, Pagination]}
           className="mySwiper"
         >
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-          </SwiperSlide>
+          {meals.map((meal) => (
+            <SwiperSlide key={meal._id}>
+              <img className="w-80 h-80 object-cover" src={meal?.mealImage} />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </div>

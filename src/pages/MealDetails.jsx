@@ -68,6 +68,7 @@ const MealDetails = () => {
 
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
+    if (!user) return toast.error("Please Login first ");
     const reviewText = e.target.review.value;
     if (reviewText.length < 20) {
       return toast.error("Please write minimum 20 characters");
@@ -112,6 +113,7 @@ const MealDetails = () => {
   };
 
   const handleMealRequest = async () => {
+    if (!user) return toast.error("Please Login first ");
     try {
       const mealRequest = {
         meal_id: meal?._id,

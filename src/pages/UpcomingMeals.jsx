@@ -55,6 +55,7 @@ const UpcomingMeals = () => {
     };
 
     try {
+      if (!user) return toast.error("Please Login first to like our food");
       const likedUser = meal?.likedBy?.map((item) => item === user?.email);
 
       if (likedUser) {

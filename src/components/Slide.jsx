@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
 
 const Slide = ({ image, title, subtitle }) => {
   return (
@@ -27,9 +28,13 @@ const Slide = ({ image, title, subtitle }) => {
                 aria-label="Enter Your Choice"
               />
 
-              <button className="px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-r-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none">
+              <Link
+                to="/meals"
+                type="button"
+                className="px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-r-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none"
+              >
                 Search
-              </button>
+              </Link>
             </div>
           </form>
           {/* <Link
