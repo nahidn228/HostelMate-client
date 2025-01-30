@@ -7,16 +7,16 @@ HostelMate is a MERN stack-based Hostel Management System designed for universit
 
 ## Admin Access  
 - **Admin Email:** admin@admin.com  
-- **Admin Password:** As123456789@  
+- **Admin Password:** As123456789@
 
 ## Features  
 1. **User Authentication:**  
    - Login/registration using email/password and social login.  
-   - JWT-based persistent login with Axios interceptors for secure API requests.  
+   - JWT-based persistent login with Axios interceptors for secure API requests.
 
 2. **Dynamic Meal Management:**  
    - View meals categorized as Breakfast, Lunch, Dinner, and All Meals.  
-   - Search and filter meals by category, price, or keyword with server-side implementation.  
+   - Search and filter meals by category, price, or keyword with server-side implementation.
     
 
 3. **Meal Detail Page:**  
