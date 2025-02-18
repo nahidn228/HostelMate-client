@@ -46,24 +46,30 @@ const UserHome = () => {
       </div>
 
       {/* User Dashboard Stats */}
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard
           icon={<MdRateReview size={30} />}
           title="My Reviews"
-          count={5}
+          count={singleUserData?.reviews?.length}
           bgColor="bg-yellow-500"
         />
         <StatCard
           icon={<FaMoneyBillWave size={30} />}
           title="Payment History"
-          count={10}
+          count={singleUserData?.payments?.length}
           bgColor="bg-green-500"
         />
         <StatCard
           icon={<FaUtensils size={30} />}
           title="Meals Requested"
-          count={3}
+          count={singleUserData?.requestMeals?.length}
           bgColor="bg-red-500"
+        />
+        <StatCard
+          icon={<FaUtensils size={30} />}
+          title="Cart"
+          count={singleUserData?.carts?.length}
+          bgColor="bg-blue-500"
         />
       </div>
     </div>
