@@ -14,7 +14,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex">
-      <div className="w-72 min-h-screen bg-[#142943] text-white">
+      <div className="w-72 min-h-screen bg-[#142943]   text-white">
         <div className="flex gap-2 items-center justify-center p-2 mt-4">
           {/* <HostelMateIcon /> */}
           <img
@@ -120,7 +120,7 @@ const Dashboard = () => {
         </ul>
       </div>
 
-      <div className="flex-1 ">
+      <div className="flex-1 max-h-screen overflow-y-scroll">
         <DashboardNavbar />
         <Outlet></Outlet>
       </div>

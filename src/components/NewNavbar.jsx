@@ -144,9 +144,7 @@ const Navbar = () => {
               >
                 <li>
                   <NavLink
-                    to={`dashboard/${
-                      isAdmin ? "myAdminProfile" : "userProfile"
-                    }`}
+                    to="/dashboard/overview"
                     className="justify-between"
                     activeClassName="text-blue-600 font-bold"
                   >

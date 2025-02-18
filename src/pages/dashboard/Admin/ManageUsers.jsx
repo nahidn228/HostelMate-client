@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { FaUserAlt } from "react-icons/fa";
-import { IoTrashBin } from "react-icons/io5";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const ManageUsers = () => {
@@ -17,7 +16,7 @@ const ManageUsers = () => {
       return res.data;
     },
   });
-  console.log(users);
+
   const handleDeleteUser = (user) => {
     Swal.fire({
       title: "Are you sure?",
@@ -150,7 +149,10 @@ const ManageUsers = () => {
                   )}
                 </td>
                 <th className="px-4 py-2">
-                  <button  onClick={() => handleDeleteUser(user)} className="group relative flex h-12 w-12 flex-col items-center justify-center overflow-hidden rounded-xl border-2  bg-orange-600 hover:bg-red-600">
+                  <button
+                    onClick={() => handleDeleteUser(user)}
+                    className="group relative flex h-12 w-12 flex-col items-center justify-center overflow-hidden rounded-xl border-2  bg-orange-600 hover:bg-red-600"
+                  >
                     <svg
                       viewBox="0 0 1.625 1.625"
                       className="absolute -top-7 fill-white delay-100 group-hover:top-6 group-hover:animate-[spin_1.4s] group-hover:duration-1000"
@@ -205,8 +207,6 @@ const ManageUsers = () => {
                       <path strokeWidth="4" stroke="white" d="M21 6V29"></path>
                     </svg>
                   </button>
-
-                 
                 </th>
               </tr>
             ))}

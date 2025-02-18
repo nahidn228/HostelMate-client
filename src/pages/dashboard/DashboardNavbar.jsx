@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import { IoSettingsSharp } from "react-icons/io5";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import useAdmin from "./../../hooks/useAdmin";
 
 const DashboardNavbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  const [isAdmin] = useAdmin();
   return (
     <div className=" flex justify-between items-center px-3 py-4">
       <div className="">
@@ -136,16 +139,24 @@ const DashboardNavbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a className="justify-between">
+              <Link to="/" className="justify-between">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to={`dashboard/${isAdmin ? "myAdminProfile" : "userProfile"}`}
+              >
                 Profile
-                <span className="badge">New</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
+              <button
+                onClick={logOut}
+                className="bg-orange-600 block text-center"
+              >
+                Logout
+              </button>
             </li>
           </ul>
         </div>
