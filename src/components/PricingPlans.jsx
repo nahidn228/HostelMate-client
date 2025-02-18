@@ -166,7 +166,7 @@ const PricingPlans = () => {
               onClick={() => handlePlans(plan)}
               className={`w-full btn py-3 rounded-lg font-semibold transition ${
                 plan.highlight
-                  ? "bg-white text-blue-600 hover:bg-gray-100"
+                  ? "bg-white text-blue-600 hover:bg-gray-200"
                   : "bg-blue-600 text-white hover:bg-blue-700"
               }`}
             >

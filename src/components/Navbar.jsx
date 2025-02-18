@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { IoNotifications } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { Typewriter } from "react-simple-typewriter";
 import { AuthContext } from "../providers/AuthProvider";
 import useAdmin from "./../hooks/useAdmin";
 const Navbar = () => {
@@ -28,8 +29,18 @@ const Navbar = () => {
             </svg>
 
             <Link to="/" className="flex gap-2 items-center">
-              <span className="font-bold text-black text-xl">HostelMate</span>
-              
+              <span className="font-bold text-black text-xl">
+                {" "}
+                <Typewriter
+                  words={["HostelMate"]}
+                  loop={true}
+                  cursor
+                  cursorStyle="|"
+                  typeSpeed={100}
+                  deleteSpeed={100}
+                  delaySpeed={1000}
+                />
+              </span>
             </Link>
           </div>
           <ul
@@ -57,7 +68,17 @@ const Navbar = () => {
               alt="HostelMateIcon"
               className="w-14"
             />
-            <span className="font-bold text-black text-xl">HostelMate</span>
+            <span className="font-bold  text-xl  text-blue-900">
+              <Typewriter
+                words={["HostelMate"]}
+                loop={true}
+                cursor
+                cursorStyle="|"
+                typeSpeed={150}
+                deleteSpeed={150}
+                delaySpeed={1000}
+              />
+            </span>
           </Link>
         </div>
       </div>
@@ -65,13 +86,13 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">
           <div className="lg:flex hidden ">
             <li>
-              <Link to="/">Home</Link>
+              <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <Link to="/meals">Meals</Link>
+              <NavLink to="/meals">Meals</NavLink>
             </li>
             <li>
-              <Link to="/upcoming">Upcoming Meals</Link>
+              <NavLink to="/upcoming">Upcoming Meals</NavLink>
             </li>
             {/* notification */}
             <li>
@@ -86,7 +107,7 @@ const Navbar = () => {
 
           {!user && (
             <li>
-              <Link to="/login">Join Us</Link>
+              <NavLink to="/login">Join Us</NavLink>
             </li>
           )}
         </ul>
@@ -111,12 +132,12 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link
+                <NavLink
                   to={`dashboard/${isAdmin ? "myAdminProfile" : "userProfile"}`}
                   className="justify-between"
                 >
                   Dashboard
-                </Link>
+                </NavLink>
               </li>
 
               <li className="mt-2">

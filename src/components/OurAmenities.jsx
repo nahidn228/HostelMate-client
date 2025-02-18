@@ -22,7 +22,7 @@ const OurAmenities = () => {
         backgroundImage: `url(${bgimg})`,
       }}
     >
-      <div className="flex items-center justify-items-start  w-full h-full bg-gray-900/50 relative">
+      <div className="flex items-center justify-items-start  max-w-screen-xl mx-auto  h-full bg-gray-900/50 relative">
         <div className="w-3/5 hidden lg:flex"></div>
         <div className=" bg-[#3F9CC1]/50  backdrop-blur-sm w-full  lg:w-2/5  space-y-5 h-full p-8 pt-14 px-10 ">
           <h1 className="text-xl font-normal text-white lg:text-3xl">

@@ -86,7 +86,7 @@ const Dashboard = () => {
             </>
           )}
 
-          {/* Shared NavLinks */}
+          {/* Shared NavLink */}
           <div className="divider"></div>
           <li>
             <NavLink to="/">

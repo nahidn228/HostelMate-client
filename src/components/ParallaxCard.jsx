@@ -7,7 +7,7 @@ const ParallaxCard = () => {
     <div className="flex flex-col lg:flex-row gap-6 px-6 py-20">
       {/* content */}
       <div className="  lg:w-1/2 space-y-4 bg-[#1A506E]/80 text-white p-8 rounded-xl ">
-        <div className="divider w-1/4 divider-success p-2"></div>
+        <div className="divider w-1/4 divider-neutral p-2"></div>
         <p className="text-sm font-medium uppercase">
           RAISING COMFORT TO THE HIGHEST LEVEL
         </p>
@@ -26,7 +26,7 @@ const ParallaxCard = () => {
             top floor, there is also a charming terrace or solarium available
             for the use of guests, from where you can enjoy the view.
           </p>
-          <Link className="btn btn-outline border-0 border-b-2 uppercase text-white hover:bg-green-600 mt-4">
+          <Link className="btn btn-outline border-0 border-b-2 uppercase text-white hover:bg-[#142943] mt-4">
             Read More
           </Link>
         </div>

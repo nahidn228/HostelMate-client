@@ -44,8 +44,8 @@ const TabCategories = () => {
 
   return (
     <Tabs>
-      <div className="container px-6 py-10 mx-auto">
-        <h1 className="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl">
+      <div className="w-11/12 md:max-w-screen-xl py-10 mx-auto">
+        <h1 className="text-3xl font-semibold text-center text-[#142943] capitalize lg:text-3xl">
           Browse Meals By Categories
         </h1>
         <p className="max-w-2xl mx-auto my-6 text-center text-gray-500">
@@ -53,7 +53,7 @@ const TabCategories = () => {
           and Dinner. Click on the tabs below to discover your favorites.
         </p>
 
-        <div className="flex items-center justify-center text-xl md:text-2xl font-light mt-10">
+        <div className="flex items-center justify-center text-lg md:text-2xl font-thin mt-10">
           <TabList>
             {categories?.map((category, index) => (
               <Tab key={index}>{category.name}</Tab>

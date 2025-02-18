@@ -11,10 +11,10 @@ const Slide = ({ image, title, subtitle }) => {
     >
       <div className="flex items-center justify-center   w-full h-full bg-gray-900/70">
         <div className="container   lg:w-1/2 px-3  space-y-5">
-          <h1 className="text-3xl font-normal text-white lg:text-7xl">
+          <h1 className="text-3xl text-center md:text-left font-normal text-white lg:text-7xl">
             {title}
           </h1>
-          <p className="text-base font-normal text-white lg:text-lg">
+          <p className="text-base text-center  md:text-left font-normal text-white lg:text-lg">
             {subtitle}
           </p>
           <br />

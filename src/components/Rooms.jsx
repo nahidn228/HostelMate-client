@@ -26,9 +26,9 @@ const Rooms = () => {
   };
   return (
     <>
-      <div className="container flex items-center justify-between py-10">
+      <div className="w-11/12 md:max-w-screen-xl mx-auto flex items-center justify-between py-10">
         <div className="text-base font-normal">
-          <div className="divider w-1/4 divider-success p-2"></div>
+          <div className="divider w-2/5 divider-neutral p-2"></div>
           <p className="text-sm font-medium uppercase">
             RAISING COMFORT TO THE HIGHEST LEVEL
           </p>
@@ -38,12 +38,12 @@ const Rooms = () => {
         </div>
         <button
           onClick={handleDetails}
-          className="btn btn-outline rounded-full md:px-8 hover:bg-green-600 mt-4"
+          className="btn btn-outline rounded-full md:px-8 hover:bg-[#142943] mt-4"
         >
           View All
         </button>
       </div>
-      <div className="container grid grid-cols-1 lg:grid-cols-3  gap-12 ">
+      <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-3  gap-12 ">
         <SimpleCard image={image} title={"Superior Double Room"} price={129} />
         <SimpleCard image={image1} title={"Superior Double Room"} price={129} />
         <SimpleCard image={image2} title={"Superior Double Room"} price={129} />

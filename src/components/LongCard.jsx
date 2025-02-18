@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const LongCard = () => {
   return (
-    <div className="container flex flex-col lg:flex-row items-center justify-center gap-6 py-20">
+    <div className="max-w-screen-xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-6 py-20">
       {/* Photo */}
       <div className=" px-5 lg:px-0 lg:w-1/2 relative">
         <img
@@ -20,7 +20,7 @@ const LongCard = () => {
       </div>
       {/* content */}
       <div className="px-5 lg:px-0 lg:w-1/2 space-y-4">
-        <div className="divider w-1/4 divider-success p-2"></div>
+        <div className="divider w-1/4 divider-neutral p-2"></div>
         <p className="text-sm font-medium uppercase">
           RAISING COMFORT TO THE HIGHEST LEVEL
         </p>
@@ -40,7 +40,7 @@ const LongCard = () => {
             for the use of guests, from where you can enjoy the view.
           </p>
           
-          <Link className="btn btn-outline border-0 border-b-2 uppercase  hover:bg-green-600 mt-4">
+          <Link className="btn btn-outline border-0 border-b-2 uppercase  hover:bg-[#142943] mt-4">
               Read More
             </Link>
         </div>

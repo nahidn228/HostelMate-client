@@ -42,9 +42,9 @@ const PhotoGallery = () => {
 
   return (
     <div className="">
-      <div className="container flex items-center justify-between py-10">
+      <div className="max-w-screen-xl mx-auto flex items-center justify-between py-10">
         <div className="text-base font-normal">
-          <div className="divider w-1/4 divider-success p-2"></div>
+          <div className="divider w-1/4 divider-neutral p-2"></div>
           <p className="text-sm font-medium uppercase">
             Welcome to our photo gallery
           </p>
@@ -54,7 +54,7 @@ const PhotoGallery = () => {
         </div>
         <button
           onClick={handleDetails}
-          className="btn btn-outline rounded-full md:px-8 hover:bg-green-600 mt-4"
+          className="btn btn-outline rounded-full md:px-8 hover:bg-[#142943] mt-4"
         >
           View All
         </button>

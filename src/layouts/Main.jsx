@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/Navbar";
 import NewFooter from "../components/NewFooter";
+import NewNavbar from "../components/NewNavbar";
 
 const Main = () => {
   return (
-    <div className="max-w-screen-xl mx-auto">
+    <div className="">
       {/* Navbar */}
-      <Navbar />
+      <NewNavbar />
       {/* Outlet */}
       <div className="min-h-[calc(100vh-306px)]">
         <Outlet />
