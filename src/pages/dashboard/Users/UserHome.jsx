@@ -1,60 +1,86 @@
+/* eslint-disable react/prop-types */
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
-import { MdOutlineEditCalendar } from "react-icons/md";
+import { FaMoneyBillWave, FaUtensils } from "react-icons/fa";
+import { MdOutlineEditCalendar, MdRateReview } from "react-icons/md";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../providers/AuthProvider";
 
 const UserHome = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
-  const { data: singleUser = {} } = useQuery({
-    queryKey: ["user", user?.email],
+  const { data: singleUserData = {} } = useQuery({
+    queryKey: ["singleUserData", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/user/${user?.email}`);
+      const res = await axiosSecure.get(`/dashboard-data/${user?.email}`);
       return res.data;
     },
   });
-  console.log(singleUser);
+  console.log(singleUserData);
+
   return (
-    <div className="flex flex-col items-center justify-center bg-gray-100 p-6 rounded-lg shadow-lg">
-    {/* Avatar Section */}
-    <div className="relative avatar mb-6">
-      <div className="w-40 h-40 rounded-full ring-2 ring-gray-300 shadow-md overflow-hidden hover:scale-105 transition-transform duration-300">
-        <img src={singleUser?.photo} alt="User Avatar" className="w-full h-full object-cover" />
+    <div className="p-6">
+      {/* User Profile Section */}
+      <div className="flex flex-col items-center bg-white rounded-xl shadow-lg p-6 w-full max-w-lg mx-auto">
+        <div className="relative w-40 h-40 rounded-full overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
+          <img
+            src={singleUserData?.user?.photo}
+            alt="User Avatar"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <h2 className="text-2xl font-bold text-gray-800 mt-4">
+          {singleUserData?.user?.name || "N/A"}
+        </h2>
+        <p className="text-gray-600">
+          {singleUserData?.user?.email || "No Email"}
+        </p>
+        <span className="mt-2 px-4 py-1 bg-blue-500 text-white text-sm font-semibold rounded-full shadow-md">
+          {singleUserData?.user?.badge || "User"}
+        </span>
+        <div className="flex gap-4 mt-4">
+          <button className="btn btn-primary text-white bg-blue-500 shadow-lg hover:shadow-xl transition duration-300">
+            <MdOutlineEditCalendar className="mr-2" /> Edit Profile
+          </button>
+        </div>
       </div>
-      <span className="badge absolute top-2 right-2 font-bold px-3 py-1 bg-yellow-500 text-gray-900 shadow-md">
-        {singleUser?.badge || "User"}
-      </span>
+
+      {/* User Dashboard Stats */}
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <StatCard
+          icon={<MdRateReview size={30} />}
+          title="My Reviews"
+          count={5}
+          bgColor="bg-yellow-500"
+        />
+        <StatCard
+          icon={<FaMoneyBillWave size={30} />}
+          title="Payment History"
+          count={10}
+          bgColor="bg-green-500"
+        />
+        <StatCard
+          icon={<FaUtensils size={30} />}
+          title="Meals Requested"
+          count={3}
+          bgColor="bg-red-500"
+        />
+      </div>
     </div>
-  
-    {/* User Details Section */}
-    <div className="text-center space-y-4">
-      <h2 className="text-2xl uppercase font-bold text-gray-800">
-        <span className="text-yellow-500">Name:</span>{" "}
-        {singleUser?.name || "N/A"}
-      </h2>
-      <h2 className="text-xl text-gray-800">
-        <span className="text-yellow-500">Email:</span>{" "}
-        {singleUser?.email || "No Email"}
-      </h2>
-      <h2 className="text-xl text-gray-800">
-        <span className="text-yellow-500">Badge:</span>{" "}
-        {singleUser?.badge || "None"}
-      </h2>
+  );
+};
+
+const StatCard = ({ icon, title, count, bgColor }) => {
+  return (
+    <div
+      className={`p-6 rounded-lg shadow-lg flex items-center ${bgColor} text-white`}
+    >
+      <div className="text-3xl mr-4">{icon}</div>
+      <div>
+        <p className="text-xl font-bold">{count}</p>
+        <p className="text-md">{title}</p>
+      </div>
     </div>
-  
-    {/* CTA Buttons */}
-    <div className="flex gap-4 mt-6">
-      <button className="btn btn-primary btn-sm bg-yellow-500 text-gray-900 shadow-lg hover:shadow-xl transition duration-300">
-        <i className="mr-2">👤</i> Profile
-      </button>
-      <button className="btn btn-secondary btn-sm bg-gray-800 text-yellow-500 shadow-lg hover:shadow-xl transition duration-300">
-        <MdOutlineEditCalendar className="mr-2" />
-        Edit Profile
-      </button>
-    </div>
-  </div>
-  
   );
 };
 

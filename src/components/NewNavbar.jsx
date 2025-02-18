@@ -3,10 +3,8 @@ import { IoNotifications } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
 import { Typewriter } from "react-simple-typewriter";
 import { AuthContext } from "../providers/AuthProvider";
-import useAdmin from "./../hooks/useAdmin";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [isAdmin] = useAdmin();
 
   const navLinks = (
     <>

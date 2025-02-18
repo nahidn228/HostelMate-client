@@ -76,6 +76,12 @@ const Dashboard = () => {
           ) : (
             <>
               <li>
+                <NavLink to="/dashboard/overview">
+                  <IoHomeOutline />
+                  Overview
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to="/dashboard/userProfile">
                   <IoHomeOutline />
                   My Profile (user)

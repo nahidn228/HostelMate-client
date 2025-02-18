@@ -114,7 +114,9 @@ const DashboardNavbar = () => {
               <span className="text-lg font-bold">8 Items</span>
               <span className="text-info">Subtotal: $999</span>
               <div className="card-actions">
-                <button className="btn btn-primary btn-block">View cart</button>
+                <Link to="paymentHistory" className="btn btn-primary btn-block">
+                  View Payment
+                </Link>
               </div>
             </div>
           </div>
@@ -144,9 +146,7 @@ const DashboardNavbar = () => {
               </Link>
             </li>
             <li>
-              <Link
-                to={`dashboard/${isAdmin ? "myAdminProfile" : "userProfile"}`}
-              >
+              <Link to={`${isAdmin ? "myAdminProfile" : "userProfile"}`}>
                 Profile
               </Link>
             </li>
