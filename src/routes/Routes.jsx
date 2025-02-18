@@ -15,6 +15,7 @@ import AllReviews from "../pages/dashboard/Admin/AllReviews";
 import ManageUsers from "../pages/dashboard/Admin/ManageUsers";
 import ServeMeal from "../pages/dashboard/Admin/ServeMeal";
 import UpcomingMealAdmin from "../pages/dashboard/Admin/UpcomingMealAdmin";
+import Overview from "../pages/dashboard/Overview";
 import Payment from "../pages/dashboard/Payment/Payment";
 import PaymentHistory from "../pages/dashboard/Payment/PaymentHistory";
 import MyReviews from "../pages/dashboard/Users/MyReviews";
@@ -65,6 +66,14 @@ const router = createBrowserRouter([
     children: [
       //Admin Route
 
+      {
+        path: "overview",
+        element: (
+          <PrivateRoute>
+            <Overview />
+          </PrivateRoute>
+        ),
+      },
       {
         path: "manage-users",
         element: (

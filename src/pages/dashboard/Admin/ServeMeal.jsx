@@ -43,10 +43,10 @@ const ServeMeal = () => {
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="input input-bordered join-item border-[#D1A054] text-[#2B3440]"
+          className="input input-bordered join-item border-gray-400 text-[#2B3440]"
           placeholder="Email"
         />
-        <button className="btn join-item rounded-r-full bg-[#D1A054] text-white hover:bg-[#2B3440]">
+        <button className="btn join-item rounded-r-full text-white bg-[#2B3440]">
           Search
         </button>
       </div>
@@ -67,7 +67,7 @@ const ServeMeal = () => {
         </thead>
         <tbody className="text-[#2B3440]">
           {serveMeals?.map((meal, idx) => (
-            <tr key={meal._id} className="hover:bg-[#D1A054] font-thin">
+            <tr key={meal._id} className="hover:bg-gray-200 font-thin">
               <td className="px-4 py-2">{idx + 1}</td>
               <td className="px-4 py-2">{meal.title}</td>
               <td className="px-4 py-2">{meal?.name ? meal?.name : "Anonymous"}</td>
@@ -76,7 +76,7 @@ const ServeMeal = () => {
               <td className="px-4 py-2">
                 <button
                   onClick={() => handleServe(meal)}
-                  className="btn btn-outline btn-sm text-[#2B3440] border-[#D1A054] hover:bg-[#D1A054] hover:text-white"
+                  className="btn btn-outline btn-sm text-[#2B3440] border-blue-600 hover:bg-blue-700 hover:text-white"
                 >
                   <GiHotMeal className="mr-2" />
                   Serve

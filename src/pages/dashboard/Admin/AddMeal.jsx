@@ -196,7 +196,7 @@ const AddMeal = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="btn bg-[#D1A054] text-white w-full hover:bg-[#2B3440] hover:text-white mt-4"
+          className="btn bg-blue-700 text-white w-full hover:bg-[#2B3440] hover:text-white mt-4"
         >
           Add Meal <MdRestaurant className="ml-2" />
         </button>

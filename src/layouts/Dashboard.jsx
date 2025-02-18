@@ -22,12 +22,20 @@ const Dashboard = () => {
             alt="HostelMateIcon"
             className="w-14"
           />
-          <span className="font-bold text-white text-lg md:text-xl">HostelMate</span>
+          <span className="font-bold text-white text-lg md:text-xl">
+            HostelMate
+          </span>
         </div>
         <div className="divider divider-neutral"></div>
         <ul className="menu">
           {isAdmin ? (
             <>
+              <li>
+                <NavLink to="/dashboard/overview">
+                  <IoHomeOutline />
+                  Overview
+                </NavLink>
+              </li>
               <li>
                 <NavLink to="/dashboard/myAdminProfile">
                   <IoHomeOutline />
