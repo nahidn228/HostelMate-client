@@ -3,7 +3,6 @@ import { IoNotifications } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import useAdmin from "./../hooks/useAdmin";
-import HostelMateIcon from "./HostelMateIcon";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isAdmin] = useAdmin();
@@ -30,6 +29,7 @@ const Navbar = () => {
 
             <Link to="/" className="flex gap-2 items-center">
               <span className="font-bold text-black text-xl">HostelMate</span>
+              
             </Link>
           </div>
           <ul
@@ -51,7 +51,12 @@ const Navbar = () => {
         </div>
         <div className=" hidden lg:flex">
           <Link to="/" className="flex gap-2 items-center">
-            <HostelMateIcon />
+            {/* <HostelMateIcon /> */}
+            <img
+              src="https://img.icons8.com/?size=100&id=zpM2C9OxTBQZ&format=png&color=000000"
+              alt="HostelMateIcon"
+              className="w-14"
+            />
             <span className="font-bold text-black text-xl">HostelMate</span>
           </Link>
         </div>

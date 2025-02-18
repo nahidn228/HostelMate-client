@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import HostelMateIcon from "./HostelMateIcon";
 
 const NewFooter = () => {
   return (
@@ -8,7 +7,12 @@ const NewFooter = () => {
         {/* Logo and About Section */}
         <div className="flex flex-col items-start">
           <div className="flex gap-2 items-center">
-            <HostelMateIcon />
+            {/* <HostelMateIcon /> */}
+            <img
+              src="https://img.icons8.com/?size=100&id=zpM2C9OxTBQZ&format=png&color=000000"
+              alt="HostelMateIcon"
+              className="w-14"
+            />
             <span className="font-bold text-black text-xl">HostelMate</span>
           </div>
           <p className="mt-4 text-sm leading-relaxed">

@@ -4,7 +4,7 @@ import NewFooter from "../components/NewFooter";
 
 const Main = () => {
   return (
-    <div>
+    <div className="max-w-screen-xl mx-auto">
       {/* Navbar */}
       <Navbar />
       {/* Outlet */}
