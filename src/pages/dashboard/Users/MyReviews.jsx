@@ -18,7 +18,7 @@ const MyReviews = () => {
   });
   console.log(reviews);
   return (
-    <div className="p-6 bg-[#D1A054]  text-white rounded-lg shadow-lg">
+    <div className="p-6  rounded-lg shadow-lg">
       <UseTitle
         title={"Welcome to HostelMate"}
         subtitle={

@@ -17,7 +17,7 @@ const RequestedMeal = () => {
   console.log(requestMeal);
 
   return (
-    <div className="p-6 bg-[#D1A054]  text-white rounded-lg shadow-xl">
+    <div className="p-6  rounded-lg shadow-xl">
       <h2 className="text-2xl font-mono mb-4">
         My Request Meal: {requestMeal.length}
       </h2>

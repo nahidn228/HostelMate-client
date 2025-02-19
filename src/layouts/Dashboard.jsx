@@ -13,8 +13,8 @@ const Dashboard = () => {
   const [isAdmin] = useAdmin();
 
   return (
-    <div className="flex">
-      <div className="w-72 min-h-screen bg-[#142943]   text-white">
+    <div className="flex flex-col md:flex-row">
+      <div className="w-full md:w-72 mx-auto min-h-screen bg-[#142943]   text-white">
         <div className="flex gap-2 items-center justify-center p-2 mt-4">
           {/* <HostelMateIcon /> */}
           <img
@@ -126,7 +126,7 @@ const Dashboard = () => {
         </ul>
       </div>
 
-      <div className="flex-1 max-h-screen overflow-y-scroll">
+      <div className="flex-1 w-full max-h-screen overflow-y-scroll">
         <DashboardNavbar />
         <Outlet></Outlet>
       </div>
