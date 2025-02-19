@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { FaMoneyBillWave, FaUtensils } from "react-icons/fa";
-import { MdOutlineEditCalendar, MdRateReview } from "react-icons/md";
+import { MdRateReview } from "react-icons/md";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../providers/AuthProvider";
@@ -39,10 +39,32 @@ const UserHome = () => {
         <span className="mt-2 px-4 py-1 bg-blue-500 text-white text-sm font-semibold rounded-full shadow-md">
           {singleUserData?.user?.badge || "User"}
         </span>
-        <div className="flex gap-4 mt-4">
-          <button className="btn btn-primary text-white bg-blue-500 shadow-lg hover:shadow-xl transition duration-300">
-            <MdOutlineEditCalendar className="mr-2" /> Edit Profile
-          </button>
+        {/* Account Creation & Last Login Info */}
+        <div className="mt-4 space-y-2  text-center">
+          <table>
+            <tbody className='text-left'>
+              <tr>
+                <td className=" font-semibold">Account Created:</td>
+                <td>
+                  {user?.metadata?.createdAt
+                    ? new Date(
+                        parseInt(user.metadata?.createdAt)
+                      ).toLocaleString()
+                    : "Unknown"}
+                </td>
+              </tr>
+              <tr>
+                <td className=" font-semibold">Last Login:</td>
+                <td>
+                  {user?.metadata?.lastLoginAt
+                    ? new Date(
+                        parseInt(user.metadata?.lastLoginAt)
+                      ).toLocaleString()
+                    : "Unknown"}
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
@@ -106,27 +128,27 @@ const UserHome = () => {
             </tbody>
           </table>
           <div className="flex justify-start mt-6">
-              <Link
-                to="/dashboard/myReviews"
-                className="flex items-center bg-blue-500 text-white gap-1 px-4 py-2 cursor-pointer  font-semibold tracking-widest rounded-md hover:bg-blue-400 duration-300 hover:gap-2 hover:translate-x-3"
+            <Link
+              to="/dashboard/myReviews"
+              className="flex items-center bg-blue-500 text-white gap-1 px-4 py-2 cursor-pointer  font-semibold tracking-widest rounded-md hover:bg-blue-400 duration-300 hover:gap-2 hover:translate-x-3"
+            >
+              See More
+              <svg
+                className="w-4 h-5"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                See More
-                <svg
-                  className="w-4 h-5"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
-                    strokeLinejoin="round"
-                    strokeLinecap="round"
-                  ></path>
-                </svg>
-              </Link>
-            </div>
+                <path
+                  d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                ></path>
+              </svg>
+            </Link>
+          </div>
         </div>
       </div>
 

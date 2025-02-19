@@ -62,7 +62,7 @@ const AddMeal = () => {
 
   return (
     <div className="p-8 bg-gray-50 rounded-lg shadow-lg">
-      <h2 className="text-3xl font-extrabold text-center text-[#D1A054] mb-6">
+      <h2 className="text-3xl font-extrabold text-center text-[#142943] mb-6">
         Add Your Meal <MdRestaurant className="inline text-3xl ml-2" />
       </h2>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -78,7 +78,7 @@ const AddMeal = () => {
               {...register("name", { required: true, maxLength: 50 })}
               type="text"
               placeholder="Enter meal name"
-              className="input input-bordered w-full border-gray-300 focus:ring-[#D1A054] focus:border-[#D1A054]"
+              className="input input-bordered w-full border-gray-300 focus:ring-[#142943] focus:border-[#142943]"
             />
           </label>
 
@@ -92,7 +92,7 @@ const AddMeal = () => {
             <select
               defaultValue="default"
               {...register("category", { required: true })}
-              className="select select-bordered w-full border-gray-300 focus:ring-[#D1A054] focus:border-[#D1A054]"
+              className="select select-bordered w-full border-gray-300 focus:ring-[#142943] focus:border-[#142943]"
             >
               <option disabled value="default">
                 Select a category
@@ -145,7 +145,7 @@ const AddMeal = () => {
               type="number"
               step="0.01"
               placeholder="Enter price"
-              className="input input-bordered w-full border-gray-300 focus:ring-[#D1A054] focus:border-[#D1A054]"
+              className="input input-bordered w-full border-gray-300 focus:ring-[#142943] focus:border-[#142943]"
             />
           </label>
 
@@ -160,7 +160,7 @@ const AddMeal = () => {
               {...register("ingredients", { required: true })}
               type="text"
               placeholder="Enter ingredients (e.g., tomato, cheese)"
-              className="input input-bordered w-full border-gray-300 focus:ring-[#D1A054] focus:border-[#D1A054]"
+              className="input input-bordered w-full border-gray-300 focus:ring-[#142943] focus:border-[#142943]"
             />
           </label>
         </div>
@@ -174,7 +174,7 @@ const AddMeal = () => {
           </div>
           <textarea
             {...register("recipe", { required: true })}
-            className="textarea textarea-bordered w-full h-24 border-gray-300 focus:ring-[#D1A054] focus:border-[#D1A054]"
+            className="textarea textarea-bordered w-full h-24 border-gray-300 focus:ring-[#142943] focus:border-[#142943]"
             placeholder="Enter detailed recipe"
           ></textarea>
         </label>
@@ -189,7 +189,7 @@ const AddMeal = () => {
           <input
             type="file"
             {...register("image")}
-            className="file-input w-full max-w-xs border-gray-300 focus:ring-[#D1A054] focus:border-[#D1A054]"
+            className="file-input w-full max-w-xs border-gray-300 focus:ring-[#142943] focus:border-[#142943]"
           />
         </div>
 

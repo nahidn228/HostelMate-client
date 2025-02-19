@@ -46,7 +46,7 @@ const AdminHome = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="flex flex-col items-center justify-center p-6 bg-[#142943] text-white rounded-2xl shadow-xl w-full max-w-lg mx-auto"
+        className="flex flex-col items-center justify-center p-6  rounded-2xl shadow-xl w-full max-w-lg mx-auto"
       >
         {/* Profile Image with Animation */}
         <motion.div
@@ -67,33 +67,42 @@ const AdminHome = () => {
         </motion.div>
 
         {/* User Info */}
-        <h2 className="text-2xl font-bold mt-4 text-gray-200">
-          <span className="text-blue-400">Name:</span>{" "}
+        <h2 className="text-2xl font-bold mt-4 ">
+          
           {adminDashboard?.user?.name || "Unknown"}
         </h2>
 
-        <h2 className="text-xl mt-1 text-gray-300">
-          <span className="text-blue-400">Email:</span>{" "}
+        <h2 className="text-xl mt-1 ">
+          
           {user?.email || "No email provided"}
         </h2>
 
         {/* Account Creation & Last Login Info */}
-        <div className="mt-4 space-y-2 text-gray-400 text-center">
-          <h2>
-            <span className="text-blue-400 font-semibold">
-              Account Created:
-            </span>{" "}
-            {user?.metadata?.createdAt
-              ? new Date(parseInt(user.metadata?.createdAt)).toLocaleString()
-              : "Unknown"}
-          </h2>
-
-          <h2>
-            <span className="text-blue-400 font-semibold">Last Login:</span>{" "}
-            {user?.metadata?.lastLoginAt
-              ? new Date(parseInt(user.metadata?.lastLoginAt)).toLocaleString()
-              : "Unknown"}
-          </h2>
+        <div className="mt-4 space-y-2  text-center">
+          <table>
+            <tbody className="text-left">
+              <tr>
+                <td className=" font-semibold">Account Created:</td>
+                <td>
+                  {user?.metadata?.createdAt
+                    ? new Date(
+                        parseInt(user.metadata?.createdAt)
+                      ).toLocaleString()
+                    : "Unknown"}
+                </td>
+              </tr>
+              <tr>
+                <td className=" font-semibold">Last Login:</td>
+                <td>
+                  {user?.metadata?.lastLoginAt
+                    ? new Date(
+                        parseInt(user.metadata?.lastLoginAt)
+                      ).toLocaleString()
+                    : "Unknown"}
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </motion.div>
 
