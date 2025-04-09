@@ -79,7 +79,7 @@ const UpcomingMeals = () => {
   };
 
   return (
-    <div className="container lg:px-6 py-10 mx-auto min-h-screen flex flex-col justify-between">
+    <div className=" w-11/12 md:max-w-screen-xl mx-auto py-10  min-h-screen flex flex-col justify-between">
       <div>
         <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {meals?.map((meal) => (

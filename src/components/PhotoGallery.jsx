@@ -42,7 +42,7 @@ const PhotoGallery = () => {
 
   return (
     <div className="">
-      <div className="max-w-screen-xl mx-auto flex items-center justify-between py-10">
+      <div className="w-11/12 max-w-screen-xl mx-auto flex items-center justify-between py-10">
         <div className="text-base font-normal">
           <div className="divider w-1/4 divider-neutral p-2"></div>
           <p className="text-sm font-medium uppercase">
@@ -59,7 +59,7 @@ const PhotoGallery = () => {
           View All
         </button>
       </div>
-      <div className="p-12 h-[28rem]">
+      <div className="py-12 h-[28rem] w-11/12 max-w-screen-xl mx-auto">
         <Swiper
           effect={"coverflow"}
           grabCursor={true}

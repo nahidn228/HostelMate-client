@@ -16,7 +16,7 @@ const PaymentHistory = () => {
 
   console.log(paymentHistory);
   return (
-    <div>
+    <div className='p-4'>
       <h2 className="text-3xl">Total Payments: </h2>
       <div className="overflow-x-auto">
         <table className="table">

@@ -105,7 +105,8 @@ const CheckoutForm = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} >
+      <div className='border-2 p-4 rounded-lg'>
       <CardElement
         options={{
           style: {
@@ -122,8 +123,9 @@ const CheckoutForm = () => {
           },
         }}
       ></CardElement>
+      </div>
       <button
-        className="btn btn-sm my-4 btn-primary"
+        className="btn btn-sm my-4 btn-primary "
         type="submit"
         disabled={!stripe || !clientSecret}
       >

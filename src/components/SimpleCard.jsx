@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 const SimpleCard = ({ image, title, price }) => {
   return (
-    <div className=" card rounded-none">
+    <div className=" card rounded-none w-11/12 mx-auto">
       <figure>
         <img className='object-cover' src={image} alt="car!" />
       </figure>

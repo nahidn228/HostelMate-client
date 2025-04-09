@@ -4,7 +4,7 @@ import cardImg2 from "../assets/images/welcome-2-1024x705.jpg";
 
 const ParallaxCard = () => {
   return (
-    <div className="flex flex-col lg:flex-row gap-6 px-6 py-20">
+    <div className="flex flex-col lg:flex-row gap-6 px-4 py-20">
       {/* content */}
       <div className="  lg:w-1/2 space-y-4 bg-[#1A506E]/80 text-white p-8 rounded-xl ">
         <div className="divider w-1/4 divider-neutral p-2"></div>

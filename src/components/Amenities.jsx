@@ -15,15 +15,15 @@ const Amenities = () => {
   ];
 
   return (
-    <div className="relative">
+    <div className="relative max-w-screen-xl mx-auto ">
       {/* Background Image */}
       <div
-        className="h-[28rem] bg-cover bg-center"
+        className="h-[32rem] bg-cover bg-center rounded-md"
         style={{
           backgroundImage: `url(${bgimg})`,
         }}
       >
-        <div className="absolute inset-0 bg-gray-900/50 flex items-center justify-end">
+        <div className="absolute inset-0 bg-gray-900/50 flex items-center justify-end rounded-md">
           {/* Amenities Card */}
           <div className="bg-blue-600/70 text-white p-8 mx-6 rounded-lg w-96 shadow-lg">
             <h2 className="text-2xl font-bold mb-4">Our Amenities</h2>

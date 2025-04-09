@@ -17,7 +17,7 @@ import bgimg4 from "../assets/images/carousel4.jpg";
 
 export default function Carousel() {
   return (
-    <div className="">
+    <div className="max-w-screen-xl mx-auto">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}

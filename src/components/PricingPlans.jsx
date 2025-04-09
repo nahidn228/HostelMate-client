@@ -99,7 +99,7 @@ const PricingPlans = () => {
     }
   };
   return (
-    <div className="text-black py-10 px-8">
+    <div className="text-black py-10 px-8 max-w-screen-xl mx-auto">
       <div data-aos="fade-up" className="text-center mb-12">
         <h1 className="text-4xl font-extrabold">Select Your Plan</h1>
         <p className="text-gray-600 mt-4">

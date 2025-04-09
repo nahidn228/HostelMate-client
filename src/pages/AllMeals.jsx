@@ -36,7 +36,7 @@ const AllMeals = () => {
   };
 
   return (
-    <div className="container lg:px-6 py-10 mx-auto min-h-screen flex flex-col justify-between">
+    <div className="w-11/12 md:max-w-screen-xl py-10 mx-auto min-h-screen flex flex-col justify-between">
       <div>
         <div className="flex flex-col lg:flex-row justify-center items-center gap-5 ">
           <div className="flex flex-col md:flex-row gap-4">
