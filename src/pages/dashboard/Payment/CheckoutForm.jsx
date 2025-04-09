@@ -75,6 +75,12 @@ const CheckoutForm = () => {
       });
     if (confirmError) {
       console.log("confirm error", confirmError);
+      Swal.fire({
+        icon: "error",
+        title: `${confirmError?.code}`,
+        text: `${confirmError?.message}`,
+      });
+      
     } else {
       console.log("Payment Intent", paymentIntent);
       if (paymentIntent.status === "succeeded") {
@@ -105,24 +111,24 @@ const CheckoutForm = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit} >
-      <div className='border-2 p-4 rounded-lg'>
-      <CardElement
-        options={{
-          style: {
-            base: {
-              fontSize: "16px",
-              color: "#424770",
-              "::placeholder": {
-                color: "#aab7c4",
+    <form onSubmit={handleSubmit}>
+      <div className="border-2 p-4 rounded-lg">
+        <CardElement
+          options={{
+            style: {
+              base: {
+                fontSize: "16px",
+                color: "#424770",
+                "::placeholder": {
+                  color: "#aab7c4",
+                },
+              },
+              invalid: {
+                color: "#9e2146",
               },
             },
-            invalid: {
-              color: "#9e2146",
-            },
-          },
-        }}
-      ></CardElement>
+          }}
+        ></CardElement>
       </div>
       <button
         className="btn btn-sm my-4 btn-primary "
